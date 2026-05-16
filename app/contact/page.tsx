@@ -92,8 +92,8 @@ const ContactPage = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto text-center text-white mt-20 md:mt-32">
           <h1 className="text-2xl md:text-4xl font-extrabold mb-6">
-            Contact Vestigo Insurance Brokers Pvt Ltd |{" "}
-            <span className="text-blue-400">IRDAI Broker</span>
+            Get in Touch With{" "}
+            <span className="text-blue-400">Our Insurance Experts</span>
           </h1>
           <p className="text-md text-slate-200 max-w-2xl mx-auto">
             Reach out today to schedule a comprehensive risk consultation and
