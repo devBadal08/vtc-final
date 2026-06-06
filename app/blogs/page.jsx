@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 async function getPosts() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/blogs", {
+    const res = await fetch("https://admin.vestigoinsurance.com/api/blogs", {
       cache: "no-store",
     });
 

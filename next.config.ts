@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "127.0.0.1",
+        protocol: "https",
+        hostname: "admin.vestigoinsurance.com",
         pathname: "/storage/**",
       },
     ],

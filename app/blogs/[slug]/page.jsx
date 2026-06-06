@@ -12,9 +12,12 @@ const poppins = Poppins({
 async function getPost(slug) {
   try {
     const decodedSlug = decodeURIComponent(slug);
-    const res = await fetch(`http://127.0.0.1:8000/api/blogs/${decodedSlug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://admin.vestigoinsurance.com/api/blogs/${decodedSlug}`,
+      {
+        cache: "no-store",
+      },
+    );
 
     if (!res.ok) return null;
     const result = await res.json();

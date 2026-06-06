@@ -42,7 +42,7 @@ export default function Partners() {
   const LOOP_PARTNERS = [...partners];
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/partners")
+    fetch("https://admin.vestigoinsurance.com/api/partners")
       .then((res) => res.json())
       .then((data) => setPartners(data))
       .catch((err) => console.log(err));
@@ -160,7 +160,7 @@ export default function Partners() {
             <div key={i} className="flex flex-col items-center gap-4">
               <div className="bg-white rounded-xl border border-blue-100 shadow-sm h-[90px] w-[180px] flex items-center justify-center px-6">
                 <img
-                  src={`http://127.0.0.1:8000/storage/${partner.logo}`}
+                  src={`https://admin.vestigoinsurance.com/storage/${partner.logo}`}
                   className="max-h-[60px] w-auto object-contain"
                   loading="lazy"
                 />
