@@ -5,7 +5,6 @@ import React from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import { motion, useScroll, useTransform } from "framer-motion";
 config.autoAddCss = false;
 
@@ -64,7 +63,15 @@ const featuredSectors = [
   },
 ];
 
-const Card = ({ s }) => (
+type CardProps = {
+  s: {
+    title: string;
+    desc: string;
+    icon: React.ReactNode;
+  };
+};
+
+const Card = ({ s }: CardProps) => (
   <div className="group p-8 rounded-2xl border border-slate-100 bg-white hover:bg-blue-600 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-blue-600/20">
     <div className="w-16 h-16 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:bg-blue-500 group-hover:text-white transition-colors">
       {s.icon}
@@ -154,7 +161,7 @@ export default function IndustriesHome() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 
   useEffect(() => {

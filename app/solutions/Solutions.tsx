@@ -32,10 +32,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Solutions() {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLElement | null>(null);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
-
-  const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,

@@ -5,7 +5,30 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 
 export const metadata: Metadata = {
-  title: "Vestigo Insurance Brokers Pvt Ltd",
+  title:
+    "Vestigo Insurance Brokers Pvt Ltd | IRDAI Insurance Brokers — Ahmedabad & Vadodara",
+
+  description:
+    "IRDAI licensed direct insurance broker offering a wide range of insurance solutions, risk advisory, claims management and employee benefits to businesses across India.",
+
+  keywords: [
+    "Vestigo Insurance",
+    "Vestigo Insurance Brokers",
+    "IRDAI insurance broker",
+    "insurance broker Ahmedabad",
+    "insurance broker Vadodara",
+    "corporate insurance India",
+    "risk advisory India",
+    "group medical insurance",
+    "claims management",
+    "employee benefits",
+    "business insurance",
+  ],
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

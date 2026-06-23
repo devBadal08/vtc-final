@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { ArrowRight, Calendar, User, BookOpen } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Risk Insights & Insurance Intelligence | Vestigo Advisory",
+  description:
+    "Thought leadership on IRDAI regulations, commercial insurance, claims management and enterprise risk from Vestigo's advisory team.",
+};
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -9,14 +16,25 @@ const poppins = Poppins({
 
 export const dynamic = "force-dynamic";
 
-async function getPosts() {
+type BlogPost = {
+  id: number;
+  title: string;
+  slug: string;
+  image?: string;
+  category?: string;
+  published_at?: string;
+  author?: string;
+  paragraph?: string;
+};
+
+async function getPosts(): Promise<BlogPost[]> {
   try {
     const res = await fetch("https://admin.vestigoinsurance.com/api/blogs", {
       cache: "no-store",
     });
 
     if (!res.ok) return [];
-    const result = await res.json();
+    const result: BlogPost[] | { data: BlogPost[] } = await res.json();
 
     if (Array.isArray(result)) return result;
     if (Array.isArray(result?.data)) return result.data;
