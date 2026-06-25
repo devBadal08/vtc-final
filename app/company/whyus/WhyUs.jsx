@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import {
   Target,
   Eye,
@@ -65,12 +66,12 @@ export default function CompanyOverview() {
     2. Added 'aspect-auto' to let the image define the space
   */}
         <div className="relative z-0 w-full h-auto">
-          <img
+          <Image
             src="/WHY.png"
             alt="About Us Background"
-            /* 'w-full h-auto' ensures the image scales perfectly 
-         to the width of the phone without cutting anything.
-      */
+            width={1920}
+            height={1080}
+            priority
             className="w-full h-auto md:h-[85vh] md:object-cover brightness-[0.9]"
           />
 

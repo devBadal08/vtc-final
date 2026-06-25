@@ -2,6 +2,7 @@
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -85,10 +86,12 @@ const ContactPage = () => {
       {/* Header Section */}
       <section className="relative min-h-[420px] md:min-h-[520px] lg:min-h-[620px] px-6 overflow-hidden flex items-center">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/contact-us.jpeg"
             alt="Vestigo Advisory Team"
-            className="w-full h-full object-cover object-center"
+            fill
+            priority
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-[#0F172A]/70" />
         </div>

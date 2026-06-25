@@ -67,13 +67,13 @@ export default function CompanyOverview() {
           2. Added 'aspect-auto' to let the image define the space
         */}
         <div className="relative z-0 w-full h-auto">
-          <img
+          <Image
             src="/who.jpeg"
             alt="About Us Background"
-            /* 'w-full h-auto' ensures the image scales perfectly 
-         to the width of the phone without cutting anything.
-      */
-            className="w-full h-auto md:h-[85vh] md:object-cover brightness-[0.9]"
+            width={1920}
+            height={1080}
+            priority
+            className="w-full h-auto md:h-[85vh] md:object-cover"
           />
 
           {/* Overlay: ensures it stays pinned to the image area */}

@@ -171,19 +171,19 @@ const ClaimsManagement = () => {
       </section>
 
       {/* 3. FEATURES GRID (Professional English Refinement) */}
-      <section className="py-5 px-6 max-w-7xl mx-auto">
+      <section className="py-12 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tighter">
             Service Capabilities
           </h2>
           <div className="w-16 h-1 bg-blue-600 mx-auto mt-4 rounded-full" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
           {features.map((f, i) => (
             <motion.div
               key={i}
               whileHover={{ y: -10 }}
-              className="p-8 border border-slate-100 rounded-[2rem] shadow-xl shadow-slate-200/50 hover:shadow-blue-500/10 transition-all bg-white"
+              className="p-8 border border-blue-500/30 rounded-[2rem] shadow-xl shadow-slate-200/50 hover:shadow-blue-500/10 transition-all bg-white"
             >
               <div className="mb-6 w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600">
                 {f.icon}

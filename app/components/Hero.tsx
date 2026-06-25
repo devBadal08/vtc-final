@@ -121,7 +121,8 @@ export default function Hero() {
             loop
             muted
             playsInline
-            className="w-full h-full object-contain md:object-cover bg-black"
+            preload="metadata"
+            className="w-full h-full object-cover"
           >
             <source src="/hero3.mp4" type="video/mp4" />
           </video>
