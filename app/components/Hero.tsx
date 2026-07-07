@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // Image component import karyo
 
 const slides = [
   {
@@ -26,6 +27,8 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  // Video load tracking mate navi state
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const totalVideoDuration = 10000;
   const slideDuration = totalVideoDuration / slides.length;
@@ -38,8 +41,40 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [slideDuration]);
 
+  // Jyare video ready thai jay tyare aa function call thase
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
   return (
-    <section className="relative w-full bg-[#020420]">
+    <section className="relative w-full">
+      {/* ✅ GLASS EFFECT LOADER (Jya sudhi video load na thay tya sudhi dekhase) */}
+      <AnimatePresence>
+        {!isVideoLoaded && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 z-50 flex items-center justify-center bg-[#020420]/50 backdrop-blur-xl"
+          >
+            {/* Logo ne halku pulse animation aapyu chhe */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <Image
+                src="/logo.png" // Tamaro logo.png public folder ma hovo joie
+                alt="Vestigo Loading"
+                width={700}
+                height={700}
+                className="object-contain drop-shadow-2xl"
+                priority
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ✅ MOBILE LAYOUT */}
       <div className="block md:hidden">
         {/* Video Top */}
@@ -50,6 +85,7 @@ export default function Hero() {
             loop
             muted
             playsInline
+            onLoadedData={handleVideoLoad} // Trigger when mobile video is loaded
             className="w-full h-full object-cover"
           >
             <source src="/hero3.mp4" type="video/mp4" />
@@ -57,7 +93,7 @@ export default function Hero() {
         </div>
 
         {/* Content Below */}
-        <div className="px-5 py-10 text-center">
+        <div className="px-5 py-10 text-center relative z-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -122,6 +158,7 @@ export default function Hero() {
             muted
             playsInline
             preload="metadata"
+            onLoadedData={handleVideoLoad} // Trigger when desktop video is loaded
             className="w-full h-full object-cover"
           >
             <source src="/hero3.mp4" type="video/mp4" />
