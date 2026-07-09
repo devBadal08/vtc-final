@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const GreenInsurance = () => {
   const containerRef = useRef(null);
@@ -91,9 +92,11 @@ const GreenInsurance = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="relative z-30 w-full flex justify-center lg:justify-end"
           >
-            <img
+            <Image
               src="/greenenergy.png"
               alt="Green Insurance"
+              width={600}
+              height={600}
               className="rounded-[2rem] md:rounded-[2.5rem] lg:rounded-[4rem] shadow-2xl border-8 border-white/5 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none transition-all duration-700"
             />
           </motion.div>

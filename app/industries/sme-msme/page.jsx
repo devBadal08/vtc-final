@@ -146,8 +146,8 @@ export default function MSMEPage() {
           className="relative z-10 text-center px-6"
         >
           <span className="bg-blue-600 text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest mb-6 inline-block shadow-lg">
-            Vestigo Insurance Advisory | IRDAI Licensed Direct Broker | Licence
-            No. 1131
+            Vestigo Insurance Brokers Pvt. Ltd. | IRDAI Licensed Direct Broker |
+            Licence No. 1131
           </span>
           <h1 className="text-3xl md:text-6xl font-black text-[#070B7F] mb-6 tracking-tighter uppercase leading-tight">
             SME & MSME
@@ -192,7 +192,7 @@ export default function MSMEPage() {
               </h3>
 
               <p className="text-slate-600 leading-relaxed">
-                Vestigo Insurance Advisory is an IRDAI Licensed Direct Insurance
+                Vestigo Insurance Brokers is an IRDAI Licensed Direct Insurance
                 Broker (General & Life), dedicated to designing risk protection
                 frameworks that safeguard Indian businesses at every stage of
                 growth.
@@ -393,7 +393,7 @@ export default function MSMEPage() {
             </h2>
 
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Vestigo Insurance Advisory is not simply a policy vendor. As an
+              Vestigo Insurance Brokers is not simply a policy vendor. As an
               IRDAI Licensed Direct Insurance Broker for both General and Life
               insurance, we act as your dedicated risk adviser — analysing your
               specific business exposures, designing a bespoke protection

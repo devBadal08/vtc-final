@@ -130,7 +130,7 @@ export default function HomePage() {
             </h2>
 
             <p className="text-base md:text-lg text-slate-600 mb-10">
-              Vestigo Insurance Advisors empowers businesses with expert risk
+              Vestigo Insurance Brokers empowers businesses with expert risk
               consulting, comprehensive inspections, and policy audits.
             </p>
           </div>

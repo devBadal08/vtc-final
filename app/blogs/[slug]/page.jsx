@@ -85,7 +85,7 @@ export default async function BlogDetailPage({ params }) {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white">
-                    {post.author || "Vestigo Advisor"}
+                    {post.author || "Vestigo"}
                   </p>
                 </div>
               </div>

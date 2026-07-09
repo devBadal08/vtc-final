@@ -410,7 +410,7 @@ export default function CompanyOverview() {
               },
               {
                 title: "Advisory Consultation",
-                desc: "Discuss sector-specific risks directly with a Vestigo advisor.",
+                desc: "Discuss sector-specific risks directly with a Vestigo.",
                 icon: PhoneCall,
               },
               {

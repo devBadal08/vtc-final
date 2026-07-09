@@ -14,6 +14,7 @@ import {
   Target,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const CreditInsurancePage = () => {
   const containerRef = useRef(null);
@@ -124,10 +125,13 @@ const CreditInsurancePage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="relative z-30 w-full flex justify-center lg:w-auto"
           >
-            <img
+            <Image
               src="/credit-insurance.png"
               alt="Credit Insurance"
-              className="rounded-3xl lg:rounded-[4rem] shadow-2xl border-8 border-white/5 w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto transition-all duration-700 hover:rotate-1"
+              width={600}
+              height={600}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+              className="rounded-3xl lg:rounded-[4rem] shadow-2xl border-8 border-white/5 w-full h-auto max-w-xs sm:max-w-sm lg:max-w-md mx-auto transition-all duration-700 hover:rotate-1"
             />
           </motion.div>
         </div>

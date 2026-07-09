@@ -24,6 +24,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const AbilitySuite = () => {
   const containerRef = useRef(null);
@@ -188,10 +189,13 @@ const AbilitySuite = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="relative z-30 w-full flex justify-center"
           >
-            <img
+            <Image
               src="/ability.jpeg"
               alt="Surety Bonds"
-              className="rounded-4xl lg:rounded-[4rem] shadow-2xl border-8 border-white/5 w-full max-w-xs sm:max-w-sm lg:max-w-2xl mx-auto transition-all duration-700"
+              width={900}
+              height={700}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 900px"
+              className="rounded-4xl lg:rounded-[4rem] shadow-2xl border-8 border-white/5 w-full h-auto max-w-xs sm:max-w-sm lg:max-w-2xl mx-auto transition-all duration-700"
             />
           </motion.div>
         </div>
@@ -341,11 +345,13 @@ const AbilitySuite = () => {
 
           {/* RIGHT IMAGE */}
           <div className="relative flex justify-center">
-            <img
+            <Image
               src="/ability1.png"
               alt="Business Protection Framework"
-              className="rounded-[2.5rem] shadow-2xl border border-slate-200 
-        w-full max-w-xl lg:max-w-2xl"
+              width={1200}
+              height={800}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 1200px"
+              className="rounded-[2.5rem] shadow-2xl border border-slate-200 w-full h-auto max-w-xl lg:max-w-2xl"
             />
 
             {/* Glow effect */}

@@ -88,7 +88,7 @@ const ContactPage = () => {
         <div className="absolute inset-0">
           <Image
             src="/contact-us.jpeg"
-            alt="Vestigo Advisory Team"
+            alt="Vestigo Insurance Brokers Team"
             fill
             priority
             className="object-cover"
@@ -186,7 +186,7 @@ const ContactPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-8 p-4 bg-green-50 text-green-700 rounded-xl border border-green-200 flex items-center gap-2"
               >
-                <span className="font-bold">Thank you.</span> A Vestigo advisor
+                <span className="font-bold">Thank you.</span> A Vestigo broker
                 will contact you within 24 hours.
               </motion.div>
             )}

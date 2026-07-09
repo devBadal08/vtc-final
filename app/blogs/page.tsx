@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, User, BookOpen } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Risk Insights & Insurance Intelligence | Vestigo Advisory",
+  title: "Risk Insights & Insurance Intelligence | Vestigo Insurance Brokers",
   description:
     "Thought leadership on IRDAI regulations, commercial insurance, claims management and enterprise risk from Vestigo's advisory team.",
 };
