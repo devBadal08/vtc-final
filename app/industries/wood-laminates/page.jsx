@@ -110,7 +110,7 @@ export default function WoodLaminationPage() {
               return (
                 <div
                   key={i}
-                  className="group p-12 bg-slate-50 border border-slate-100 rounded-[2.5rem] hover:bg-white hover:border-blue-200 hover:shadow-2xl transition-all duration-500"
+                  className="group p-12 bg-slate-200 border border-slate-100 rounded-[2.5rem] hover:bg-white hover:border-blue-200 hover:shadow-2xl transition-all duration-500"
                 >
                   <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 transform group-hover:-translate-y-2 transition-transform shadow-lg shadow-blue-200">
                     <Icon size={32} />
