@@ -225,7 +225,7 @@ const CommercialInsuranceClient = () => {
           </p>
           <Link href="/contact" className="inline-block">
             <button className="inline-flex items-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all">
-              Riquest Consultation
+              Request Consultation
             </button>
           </Link>
           <div className="absolute top-0 left-0 -ml-20 -mt-20 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
