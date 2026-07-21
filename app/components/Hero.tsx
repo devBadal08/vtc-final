@@ -106,7 +106,7 @@ export default function Hero() {
                 {slides[index].tag}
               </span>
 
-              <h1 className="text-xl font-black text-white leading-snug uppercase mb-4">
+              <h1 className="text-xl font-black text-[#070B7F] leading-snug uppercase mb-4">
                 {slides[index].title}
                 <span className="text-blue-500">
                   {" "}
@@ -114,10 +114,10 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <p className="text-sm text-[#D1D5DB] leading-relaxed mb-8">
+              <p className="text-sm text-slate-600 leading-relaxed mb-8">
                 {slides[index].desc}
               </p>
-              <p className="text-xl text-gray-300 mb-6 font-medium tracking-wide">
+              <p className="text-xl text-slate-700 mb-6 font-medium tracking-wide">
                 IRDAI Licensed Direct Broker | Regn. No. 1131 | General & Life
               </p>
             </motion.div>
@@ -136,7 +136,7 @@ export default function Hero() {
             <Link href="/solutions">
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-3 border border-white text-white text-xs font-black uppercase tracking-widest rounded-full"
+                className="w-full py-3 border border-[#070B7F] text-[#070B7F] text-xs font-black uppercase tracking-widest rounded-full"
               >
                 View Solutions
               </motion.button>

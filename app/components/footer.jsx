@@ -42,10 +42,12 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-4 gap-y-4 lg:gap-y-10 items-start">
             {/* 1. Company */}
             <div className="lg:col-span-1">
-              <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap">
-                Company
-                <span className="absolute -bottom-2 lg:-bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
-              </h3>
+              <Link href="/company">
+                <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap cursor-pointer hover:text-blue-400 transition-colors">
+                  Company
+                  <span className="absolute -bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
+                </h3>
+              </Link>
               {/* Visible only on Desktop */}
               <ul className="hidden lg:block space-y-2 text-[13px]">
                 <li>
@@ -85,10 +87,12 @@ export default function Footer() {
 
             {/* 2. Industries */}
             <div className="lg:col-span-4 lg:pl-4">
-              <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap">
-                Industries We Serve
-                <span className="absolute -bottom-2 lg:-bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
-              </h3>
+              <Link href="/industries">
+                <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap cursor-pointer hover:text-blue-400 transition-colors">
+                  Industries We Serve
+                  <span className="absolute -bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
+                </h3>
+              </Link>
               {/* Visible only on Desktop */}
               <div className="hidden lg:grid grid-cols-4 gap-x-4 gap-y-2 text-[11px]">
                 <ul className="space-y-2">
@@ -226,10 +230,12 @@ export default function Footer() {
 
             {/* 3. Services */}
             <div className="lg:col-span-1 lg:pl-4">
-              <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap">
-                Services
-                <span className="absolute -bottom-2 lg:-bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
-              </h3>
+              <Link href="/solutions">
+                <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap cursor-pointer hover:text-blue-400 transition-colors">
+                  Services
+                  <span className="absolute -bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
+                </h3>
+              </Link>
               {/* Visible only on Desktop */}
               <ul className="hidden lg:block space-y-2 text-[13px]">
                 <li>
@@ -269,10 +275,12 @@ export default function Footer() {
 
             {/* 4. Contact Us */}
             <div className="lg:col-span-2 lg:pl-4">
-              <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap">
-                Contact Us
-                <span className="absolute -bottom-2 lg:-bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
-              </h3>
+              <Link href="/contact">
+                <h3 className="text-white font-bold text-[18px] lg:uppercase tracking-[0.1em] mb-2 lg:mb-6 relative inline-block whitespace-nowrap cursor-pointer hover:text-blue-400 transition-colors">
+                  Contact Us
+                  <span className="absolute -bottom-2 left-0 w-6 h-0.5 bg-[#4169E1]"></span>
+                </h3>
+              </Link>
               <ul className="space-y-2 lg:space-y-4 text-[12px]">
                 <li className="flex items-center gap-2">
                   <Phone size={14} className="text-[#4169E1] flex-shrink-0" />

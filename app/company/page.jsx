@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Target,
@@ -53,6 +53,14 @@ export default function CompanyOverview() {
     { label: "Business Protected", value: "500+", icon: <Users size={20} /> },
     { label: "Expert Advisors", value: "50+", icon: <Building2 size={20} /> },
   ];
+  const [partners, setPartners] = useState([]);
+
+  useEffect(() => {
+    fetch("https://admin.vestigoinsurance.com/api/partners")
+      .then((res) => res.json())
+      .then((data) => setPartners(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <main ref={containerRef} className="bg-white overflow-hidden">
@@ -246,17 +254,22 @@ export default function CompanyOverview() {
             Trusted by Leading Organizations
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-            {partners.map((p, i) => (
-              <div key={i} className="flex flex-col items-center group">
+            {partners.map((partner, i) => (
+              <div
+                key={partner.id ?? i}
+                className="flex flex-col items-center group"
+              >
                 <div className="bg-white h-[90px] sm:h-[110px] w-full max-w-[220px] rounded-2xl border border-blue-100 shadow-sm flex items-center justify-center p-4 sm:p-6 group-hover:shadow-md transition-shadow">
                   <img
-                    src={p.src}
-                    alt={p.name}
+                    src={`https://admin.vestigoinsurance.com/storage/${partner.logo}`}
+                    alt={partner.name}
                     className="max-h-full max-w-full object-contain"
+                    loading="lazy"
                   />
                 </div>
+
                 <span className="mt-3 sm:mt-4 text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest text-center">
-                  {p.name}
+                  {partner.name}
                 </span>
               </div>
             ))}

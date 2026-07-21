@@ -117,7 +117,7 @@ const BfsisSuite = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tighter uppercase">
-              Core Financial Modules
+              BFSI Potential Threats & Risks
             </h2>
             <div className="h-1.5 w-20 bg-blue-600 rounded-full"></div>
           </div>
@@ -225,6 +225,30 @@ const BfsisSuite = () => {
           Request Consultation
           <ArrowRight size={20} />
         </Link>
+      </section>
+      {/* 5. CTA - DARK PREMIUM FINISH */}
+      <section className="py-14 px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="max-w-5xl mx-auto bg-slate-950 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl"
+        >
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] -mr-48 -mt-48" />
+          <div className="relative z-10">
+            <ShieldCheck size={64} className="text-blue-400 mx-auto mb-10" />
+            <h2 className="text-4xl md:text-6xl font-black mb-8 uppercase italic tracking-tighter">
+              Secure Your <br /> Industrial Future
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <button className="bg-blue-600/50 hover:bg-white/20 text-white border border-white/30 px-12 py-5 rounded-2xl font-bold text-xl transition-all backdrop-blur-md">
+                <Link href="/contact" className="flex items-center gap-2">
+                  Talk to Experts
+                  <ArrowRight size={20} />
+                </Link>
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </section>
     </main>
   );
