@@ -86,9 +86,10 @@ export default async function BlogPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {posts.map((post) => (
-                <div
+                <Link
                   key={post.id}
-                  className="group flex flex-col bg-white border border-slate-400 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500"
+                  href={`/blogs/${post.slug}`}
+                  className="group flex flex-col bg-white border border-slate-400 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-blue-900/10 hover:-translate-y-1 transition-all duration-500 cursor-pointer"
                 >
                   {/* IMAGE CONTAINER */}
                   <div className="relative h-60 w-full overflow-hidden bg-slate-100">
@@ -140,19 +141,16 @@ export default async function BlogPage() {
 
                     {/* BUTTON AREA */}
                     <div className="mt-auto pt-5 border-t border-slate-100 flex items-center justify-between">
-                      <Link
-                        href={`/blogs/${post.slug}`}
-                        className="flex items-center gap-2 text-blue-600 font-extrabold text-xs tracking-tight group/link"
-                      >
+                      <span className="flex items-center gap-2 text-blue-600 font-extrabold text-xs tracking-tight">
                         READ FULL ARTICLE
                         <ArrowRight
                           size={16}
-                          className="group-hover/link:translate-x-1.5 transition-transform"
+                          className="group-hover:translate-x-1.5 transition-transform"
                         />
-                      </Link>
+                      </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

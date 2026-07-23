@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image"; // Image component import karyo
 
 const slides = [
   {
@@ -27,8 +26,6 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
-  // Video load tracking mate navi state
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const totalVideoDuration = 10000;
   const slideDuration = totalVideoDuration / slides.length;
@@ -41,51 +38,18 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, [slideDuration]);
 
-  // Jyare video ready thai jay tyare aa function call thase
-  const handleVideoLoad = () => {
-    setIsVideoLoaded(true);
-  };
-
   return (
-    <section className="relative w-full">
-      {/* ✅ GLASS EFFECT LOADER (Jya sudhi video load na thay tya sudhi dekhase) */}
-      <AnimatePresence>
-        {!isVideoLoaded && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-[#020420]/50 backdrop-blur-xl"
-          >
-            {/* Logo ne halku pulse animation aapyu chhe */}
-            <motion.div
-              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            >
-              <Image
-                src="/logo.png" // Tamaro logo.png public folder ma hovo joie
-                alt="Vestigo Loading"
-                width={700}
-                height={700}
-                className="object-contain drop-shadow-2xl"
-                priority
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+    <section className="relative w-full bg-[#020420]">
       {/* ✅ MOBILE LAYOUT */}
       <div className="block md:hidden">
-        {/* Video Top */}
-        <div className="relative w-full h-[45svh] overflow-hidden">
-          <div className="absolute inset-0 bg-black/30 z-10" />
+        {/* Video Top with Gradient Background */}
+        <div className="relative w-full h-[45svh] overflow-hidden bg-[#020420]">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020420]/40 to-[#020420] z-10" />
           <video
             autoPlay
             loop
             muted
             playsInline
-            onLoadedData={handleVideoLoad} // Trigger when mobile video is loaded
             className="w-full h-full object-cover"
           >
             <source src="/hero3.mp4" type="video/mp4" />
@@ -106,7 +70,7 @@ export default function Hero() {
                 {slides[index].tag}
               </span>
 
-              <h1 className="text-xl font-black text-[#070B7F] leading-snug uppercase mb-4">
+              <h1 className="text-xl font-black text-white leading-snug uppercase mb-4">
                 {slides[index].title}
                 <span className="text-blue-500">
                   {" "}
@@ -114,10 +78,10 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <p className="text-sm text-slate-600 leading-relaxed mb-8">
+              <p className="text-sm text-[#D1D5DB] leading-relaxed mb-8">
                 {slides[index].desc}
               </p>
-              <p className="text-xl text-slate-700 mb-6 font-medium tracking-wide">
+              <p className="text-sm text-gray-300 mb-6 font-medium tracking-wide">
                 IRDAI Licensed Direct Broker | Regn. No. 1131 | General & Life
               </p>
             </motion.div>
@@ -127,7 +91,7 @@ export default function Hero() {
             <Link href="/contact">
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-3 bg-[#070B7F] text-white text-xs font-black uppercase tracking-widest rounded-full"
+                className="w-full py-3 bg-[#070B7F] text-white text-xs font-black uppercase tracking-widest rounded-full shadow-lg"
               >
                 Speak to an Advisor
               </motion.button>
@@ -136,7 +100,7 @@ export default function Hero() {
             <Link href="/solutions">
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-3 border border-[#070B7F] text-[#070B7F] text-xs font-black uppercase tracking-widest rounded-full"
+                className="w-full py-3 border border-white/60 text-white text-xs font-black uppercase tracking-widest rounded-full"
               >
                 View Solutions
               </motion.button>
@@ -146,34 +110,33 @@ export default function Hero() {
       </div>
 
       {/* ✅ DESKTOP LAYOUT */}
-      <div className="hidden md:block relative min-h-screen overflow-hidden">
-        {/* Background Video */}
+      <div className="hidden md:block relative min-h-screen overflow-hidden bg-[#020420]">
+        {/* Background Video & Gradient Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/20 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#020420]/80 via-transparent to-[#020420] z-10" />
+          <div className="absolute inset-0 bg-black/30 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020420]/80 via-[#020420]/40 to-[#020420] z-10" />
 
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
-            onLoadedData={handleVideoLoad} // Trigger when desktop video is loaded
+            preload="auto"
             className="w-full h-full object-cover"
           >
             <source src="/hero3.mp4" type="video/mp4" />
           </video>
         </div>
 
-        {/* Content */}
+        {/* Hero Content */}
         <div className="relative z-20 h-screen container mx-auto px-6 flex flex-col items-center justify-end pb-24 text-center">
           <div className="max-w-4xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`content-${index}`}
-                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
                 transition={{ duration: 0.8 }}
               >
                 <span className="inline-block text-[#93C5FD] font-black uppercase tracking-[0.4em] text-[12px] mb-6">
@@ -188,7 +151,7 @@ export default function Hero() {
                   </span>
                 </h1>
 
-                <p className="text-lg text-[#D1D5DB] leading-relaxed max-w-2xl mx-auto mb-12">
+                <p className="text-lg text-[#D1D5DB] leading-relaxed max-w-2xl mx-auto mb-10">
                   {slides[index].desc}
                 </p>
 
@@ -203,7 +166,7 @@ export default function Hero() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 bg-[#070B7F] text-white text-xs font-black uppercase tracking-widest rounded-full"
+                  className="px-10 py-4 bg-[#070B7F] hover:bg-[#0a0faf] text-white text-xs font-black uppercase tracking-widest rounded-full transition-all shadow-xl"
                 >
                   Speak to an Advisor
                 </motion.button>
@@ -213,7 +176,7 @@ export default function Hero() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-4 border-2 border-white text-white text-xs font-black uppercase tracking-widest rounded-full"
+                  className="px-10 py-4 border-2 border-white/80 hover:border-white text-white text-xs font-black uppercase tracking-widest rounded-full transition-all"
                 >
                   View Solutions
                 </motion.button>

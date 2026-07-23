@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import {
   ShieldCheck,
@@ -28,11 +28,13 @@ import {
   AlertCircle,
   RefreshCw,
   FileText,
+  ChevronRight,
+  Copy,
+  Check,
 } from "lucide-react";
-import { desc } from "framer-motion/client";
 
 // ==========================================
-// FULL 19-CLAUSE POLICY DATA
+// FULL 18-CLAUSE POLICY DATA
 // ==========================================
 
 const corporateDetails = {
@@ -66,7 +68,7 @@ const policyCards = [
     id: "scope",
     num: "02",
     title: "Scope",
-    icon: <Users className="text-blue-500" size={22} />,
+    icon: <Users className="text-white" size={22} />,
     content: "This Policy may apply to personal data relating to:",
     list: [
       "Website visitors, enquirers and prospective clients.",
@@ -96,7 +98,20 @@ const policyCards = [
       "Premises and security data: visitor records and CCTV footage where security systems are lawfully deployed at our premises.",
     ],
   },
-
+  {
+    id: "collection",
+    num: "04",
+    title: "How We Collect Personal Data",
+    icon: <FileSearch className="text-white" size={22} />,
+    content: "We may obtain personal data:",
+    list: [
+      "Directly from the individual through forms, emails, calls, meetings, website submissions or documents.",
+      "From an employer, group policyholder, authorised representative, family member, nominee, beneficiary or other person who is authorised to provide it.",
+      "From insurers, reinsurers, third-party administrators, surveyors, loss assessors, hospitals, healthcare providers, garages, investigators, legal advisers and other participants in the insurance lifecycle.",
+      "From lawful public sources, statutory databases, credit or identity-verification sources and business directories, where permitted.",
+      "Automatically through website, network, security and cookie technologies.",
+    ],
+  },
   {
     id: "purpose",
     num: "05",
@@ -118,25 +133,12 @@ const policyCards = [
       "Sending relevant service or marketing communications where permitted by law and the recipient has not opted out or where consent is required and has been obtained.",
     ],
   },
-  {
-    id: "collection",
-    num: "04",
-    title: "How We Collect Personal Data",
-    icon: <FileSearch className="text-blue-500" size={22} />,
-    content: "We may obtain personal data:",
-    list: [
-      "Directly from the individual through forms, emails, calls, meetings, website submissions or documents.",
-      "From an employer, group policyholder, authorised representative, family member, nominee, beneficiary or other person who is authorised to provide it.",
-      "From insurers, reinsurers, third-party administrators, surveyors, loss assessors, hospitals, healthcare providers, garages, investigators, legal advisers and other participants in the insurance lifecycle.",
-      "From lawful public sources, statutory databases, credit or identity-verification sources and business directories, where permitted.",
-      "Automatically through website, network, security and cookie technologies.",
-    ],
-  },
+
   {
     id: "consent",
     num: "06",
     title: "Consent and Other Permitted Processing",
-    icon: <UserCheck className="text-blue-500" size={22} />,
+    icon: <UserCheck className="text-white" size={22} />,
     content:
       "Where consent is the appropriate basis for processing, Vestigo will seek consent that is specific, informed and indicated through a clear affirmative action. Merely browsing a publicly accessible page will not, by itself, be treated as consent for unrelated processing or optional cookies.",
     list: [
@@ -161,7 +163,7 @@ const policyCards = [
     id: "children",
     num: "08",
     title: "Children and Persons Requiring Assistance",
-    icon: <AlertCircle className="text-blue-500" size={22} />,
+    icon: <AlertCircle className="text-white" size={22} />,
     content:
       "Our website and services are not directed at obtaining independent consent from children.",
     list: [
@@ -191,7 +193,7 @@ const policyCards = [
     id: "transfers",
     num: "10",
     title: "International and Cross-Border Processing",
-    icon: <Globe className="text-blue-500" size={22} />,
+    icon: <Globe className="text-white" size={22} />,
     content:
       "Certain insurance arrangements, overseas travel or employee-benefit programmes, global insurers or reinsurers, assistance services, claims, technology platforms or cloud services may require data to be accessed from or transferred outside India. Any such processing will be undertaken only where legally permitted and with contractual, technical and organisational safeguards appropriate to the circumstances. Vestigo will comply with any country restrictions or conditions notified under applicable Indian law.",
   },
@@ -207,7 +209,7 @@ const policyCards = [
     id: "security",
     num: "12",
     title: "Information Security",
-    icon: <Lock className="text-blue-500" size={22} />,
+    icon: <Lock className="text-white" size={22} />,
     content: (
       <>
         Vestigo uses reasonable and proportionate physical, administrative and
@@ -238,7 +240,7 @@ const policyCards = [
     id: "retention",
     num: "14",
     title: "Retention and Disposal",
-    icon: <Clock className="text-blue-500" size={22} />,
+    icon: <Clock className="text-white" size={22} />,
     content: (
       <>
         Insurance-broking books, records and documents will ordinarily be
@@ -280,7 +282,7 @@ const policyCards = [
     id: "communications",
     num: "16",
     title: "Communications and Marketing Preferences",
-    icon: <MessageSquareWarning className="text-blue-500" size={22} />,
+    icon: <MessageSquareWarning className="text-white" size={22} />,
     content:
       "Vestigo may send communications necessary to respond to an enquiry, administer a service, provide policy or claim information, comply with law or protect security. Such service communications cannot always be opted out of while the relevant relationship continues. Promotional communications may be stopped by using the unsubscribe option, replying with an opt-out request, or writing to enquiry@vestigoinsurance.com. We may retain limited suppression information to honour an opt-out request.",
   },
@@ -296,77 +298,105 @@ const policyCards = [
     id: "updates",
     num: "18",
     title: "Changes to this Policy",
-    icon: <RefreshCw className="text-blue-500" size={22} />,
+    icon: <RefreshCw className="text-white" size={22} />,
     content:
       "Vestigo may amend this Privacy Policy to reflect changes in law, regulation, technology, services or business practices. The revised version will be posted on the website with an updated effective or last-updated date. Material changes may also be communicated through an appropriate additional notice where required.",
   },
 ];
 
 export default function ComprehensivePolicy() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const renderSpecialCard = (card, extraClasses = "") => (
-    <motion.div
-      key={card.id}
-      whileHover={{ x: 6 }}
-      className={`bg-gradient-to-br from-blue-50 to-white p-8 rounded-[28px] border-l-8 border-blue-600 shadow-lg flex flex-col justify-between ${extraClasses}`}
-    >
-      <div>
-        <div className="flex items-center gap-4 mb-5">
-          <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
-            {card.icon}
-          </div>
-          <div>
-            <p className="text-xs uppercase font-bold text-blue-600">
-              Clause {card.num}
-            </p>
-            <h3 className="text-xl font-bold text-slate-900">{card.title}</h3>
-          </div>
-        </div>
-        <p className="text-slate-600 mb-5 text-sm leading-relaxed">
-          {card.content}
-        </p>
-      </div>
+  const [activeTab, setActiveTab] = useState("about");
+  const [copied, setCopied] = useState(false);
+  const videoRef = useRef(null);
+  const indexContainerRef = useRef(null);
 
-      {card.list && (
-        <ul className="space-y-3 pt-4 border-t border-blue-100">
-          {card.list.map((item, i) => (
-            <li
-              key={i}
-              className="flex items-start gap-3 text-xs sm:text-sm text-slate-700"
-            >
-              <div className="w-2 h-2 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {card.desc && (
-        <div className="mt-5 rounded-xl border border-blue-200 bg-blue-50 p-4">
-          <p className="text-sm text-slate-700 leading-relaxed">{card.desc}</p>
-        </div>
-      )}
-    </motion.div>
-  );
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(corporateDetails.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  // Video looping logic
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = async () => {
+      video.muted = true;
+      video.currentTime = 0;
+
+      try {
+        await video.play();
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+
+  // ==========================================
+  // SCROLL SPY INTERSECTION OBSERVER
+  // ==========================================
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -55% 0px", // Triggers when top of clause reaches upper portion of viewport
+      threshold: 0,
+    };
+
+    const handleIntersection = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveTab(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      observerOptions,
+    );
+
+    policyCards.forEach((card) => {
+      const element = document.getElementById(card.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Smooth scroll active index item into sidebar view
+  useEffect(() => {
+    const activeLink = document.getElementById(`nav-${activeTab}`);
+    const container = indexContainerRef.current;
+
+    if (activeLink && container) {
+      const offsetTop = activeLink.offsetTop;
+      container.scrollTo({
+        top: offsetTop - 40,
+        behavior: "smooth",
+      });
+    }
+  }, [activeTab]);
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-900 overflow-x-hidden">
-      {/* HERO SECTION */}
-      <section
-        ref={containerRef}
-        className="relative bg-[#040a26] overflow-hidden flex flex-col lg:flex-row lg:items-center lg:min-h-[75vh]"
-      >
+    <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-900 selection:bg-blue-500 selection:text-white">
+      {/* ================= 1. HERO SECTION ================= */}
+      <section className="relative bg-[#040a26] overflow-hidden flex flex-col lg:flex-row lg:items-center lg:min-h-[75vh]">
         <div className="relative w-full h-[280px] sm:h-[360px] lg:absolute lg:top-0 lg:right-0 lg:w-1/2 lg:h-full z-0 overflow-hidden">
           <video
+            ref={videoRef}
             autoPlay
             playsInline
             preload="auto"
-            muted
-            loop
+            muted={false}
+            loop={false}
             className="w-full h-full object-cover"
           >
             <source src="/heropolicy.mp4" type="video/mp4" />
@@ -376,7 +406,12 @@ export default function ComprehensivePolicy() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-8 sm:py-12 lg:py-16 w-full">
-          <motion.div style={{ y, opacity }} className="max-w-2xl lg:max-w-xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl lg:max-w-xl"
+          >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">
               <Sparkles size={14} />
               Effective Date: {corporateDetails.effectiveDate}
@@ -418,52 +453,52 @@ export default function ComprehensivePolicy() {
         </div>
       </section>
 
-      {/* CORPORATE REGISTRATION BANNER */}
-      <section className="relative z-20 -mt-6 sm:-mt-10 px-6 max-w-7xl mx-auto">
-        <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          <div className="flex items-start gap-4">
+      {/* ================= 2. CORPORATE IDENTIFICATION BANNER ================= */}
+      <section className="relative z-20 -mt-8 px-6 max-w-7xl mx-auto">
+        <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-center">
+          <div className="flex items-center gap-4">
             <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl shrink-0">
               <Building2 size={24} />
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">
+              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                 Corporate Identity
               </p>
-              <p className="text-sm font-bold text-slate-800 mt-1">
+              <p className="text-sm font-bold text-slate-800 mt-0.5">
                 CIN: {corporateDetails.cin}
               </p>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-slate-500">
                 {corporateDetails.companyName}
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
+          <div className="flex items-center gap-4">
             <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl shrink-0">
               <MapPin size={24} />
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">
-                Registered & Corporate Office
+              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+                Registered Office
               </p>
-              <p className="text-xs font-semibold text-slate-700 mt-1 leading-relaxed">
+              <p className="text-xs font-semibold text-slate-700 mt-0.5 leading-snug">
                 {corporateDetails.address}
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
+          <div className="flex items-center gap-4">
             <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl shrink-0">
               <Mail size={24} />
             </div>
             <div>
-              <p className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">
-                Official Inquiries
+              <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+                Privacy & Compliance Desk
               </p>
-              <p className="text-sm font-bold text-blue-600 mt-1">
+              <p className="text-sm font-bold text-blue-600 mt-0.5 break-all sm:break-normal">
                 {corporateDetails.email}
               </p>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-slate-500">
                 {corporateDetails.website}
               </p>
             </div>
@@ -471,220 +506,205 @@ export default function ComprehensivePolicy() {
         </div>
       </section>
 
-      {/* CARD GRID SECTION */}
-      <section className="py-14 px-6 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-xs font-black uppercase tracking-[0.4em] text-blue-600 mb-3">
-              Governance Framework
-            </h2>
-            <h3 className="text-3xl sm:text-4xl font-black text-[#031154]">
-              Complete Policy Provisions (1 through 19)
-            </h3>
-            <p className="text-slate-600 text-base mt-3 max-w-2xl mx-auto">
-              All governance clauses displayed in full detail below.
-            </p>
-          </div>
+      {/* ================= 3. MAIN CONTENT LAYOUT (STICKY NAV + CLAUSES) ================= */}
+      <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
+          {/* LEFT: STICKY NAVIGATION INDEX (Desktop only) */}
+          <aside className="hidden lg:block lg:col-span-4 sticky top-8 space-y-4">
+            <div className="bg-white border border-slate-200/90 rounded-3xl p-5 shadow-sm">
+              <div className="flex items-center gap-2 mb-4 px-2 text-slate-800 font-bold text-sm">
+                <FileText size={18} className="text-blue-600" />
+                Policy Index (Clauses 01–18)
+              </div>
+              <div
+                ref={indexContainerRef}
+                className="space-y-1 max-h-[70vh] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200"
+              >
+                {policyCards.map((clause) => (
+                  <a
+                    key={clause.id}
+                    id={`nav-${clause.id}`}
+                    href={`#${clause.id}`}
+                    onClick={() => setActiveTab(clause.id)}
+                    className={`flex items-center justify-between text-xs font-medium px-3.5 py-2.5 rounded-xl transition-all ${
+                      activeTab === clause.id
+                        ? "bg-blue-600 text-white font-semibold shadow-md shadow-blue-500/20"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                    }`}
+                  >
+                    <span className="truncate pr-2">
+                      <strong className="mr-2 opacity-80">{clause.num}.</strong>
+                      {clause.title}
+                    </span>
+                    <ChevronRight size={14} className="shrink-0 opacity-60" />
+                  </a>
+                ))}
+              </div>
+            </div>
 
-          <div className="space-y-8">
-            {/* ========================================================= */}
-            {/* 1. FIRST 9 CARDS (Standard 2-Column Grid)                 */}
-            {/* ========================================================= */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-              {policyCards.slice(0, 9).map((card, index) => (
+            {/* QUICK CONTACT HELP CARD */}
+          </aside>
+
+          {/* RIGHT: CLAUSES CONTENT CONTAINER */}
+          <main className="lg:col-span-8 space-y-6 sm:space-y-8">
+            {policyCards.map((card, index) => {
+              const isEven = index % 2 === 1;
+
+              return (
                 <motion.div
                   key={card.id}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className={`
-          bg-white p-6 sm:p-8 rounded-[28px]
-          border border-slate-200/90 shadow-sm
-          hover:shadow-md transition-all
-          flex flex-col h-full
-          ${index === 8 ? "md:col-span-2 lg:col-span-2" : ""}
-        `}
+                  id={card.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4 }}
+                  className={`scroll-mt-8 p-5 sm:p-8 rounded-[24px] sm:rounded-[28px] transition-all ${
+                    isEven
+                      ? "bg-gradient-to-br from-blue-50/60 via-indigo-50/20 to-white border border-blue-200/80 shadow-md"
+                      : "bg-white border border-slate-200/90 shadow-sm"
+                  }`}
                 >
-                  <div>
-                    {/* CARD HEADER */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                        {card.icon}
-                      </div>
-                      <span className="text-[11px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-2.5 py-1 rounded-md border border-slate-100">
-                        Clause {card.num}
-                      </span>
+                  {/* CARD HEADER */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div
+                      className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 ${
+                        isEven
+                          ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                          : "bg-blue-50 text-blue-600 border border-blue-100"
+                      }`}
+                    >
+                      {card.icon}
                     </div>
 
-                    {/* CARD TITLE & CONTENT */}
-                    <h4 className="text-lg font-black text-slate-800 mb-3 tracking-tight leading-snug">
-                      {card.title}
-                    </h4>
-
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-5">
-                      {card.content}
-                    </p>
+                    <span
+                      className={`text-[10px] sm:text-[11px] font-black uppercase tracking-widest px-3 py-1 rounded-full border ${
+                        isEven
+                          ? "bg-blue-100 text-blue-800 border-blue-200"
+                          : "bg-slate-100 text-slate-500 border-slate-200"
+                      }`}
+                    >
+                      Clause {card.num}
+                    </span>
                   </div>
 
-                  {/* CARD LIST ITEMS */}
+                  {/* TITLE */}
+                  <h3
+                    className={`text-lg sm:text-xl font-black mb-3 tracking-tight ${
+                      isEven ? "text-[#031154]" : "text-slate-900"
+                    }`}
+                  >
+                    {card.num}. {card.title}
+                  </h3>
+
+                  {/* SUMMARY / CONTENT */}
+                  <div className="text-slate-600 text-sm leading-relaxed mb-4 text-left sm:text-justify">
+                    {card.content}
+                  </div>
+
+                  {/* BULLET POINTS IF AVAILABLE */}
                   {card.list && (
-                    <ul className="space-y-2.5 pt-4 border-t border-slate-500 mt-auto">
-                      {card.list.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2.5 p-3 bg-slate-100/80 rounded-xl text-slate-700 text-sm font-medium border border-slate-300/80"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
-                          <span className="leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="mt-5 pt-4 border-t border-slate-200/60">
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
+                        Key Policy Provisions:
+                      </p>
+                      <div className="grid grid-cols-1 gap-2.5">
+                        {card.list.map((item, i) => (
+                          <div
+                            key={i}
+                            className={`flex items-start gap-3 p-3.5 rounded-xl text-xs sm:text-sm font-medium border ${
+                              isEven
+                                ? "bg-white/90 border-blue-100 text-slate-800"
+                                : "bg-slate-50 border-slate-100 text-slate-700"
+                            }`}
+                          >
+                            <div
+                              className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 ${
+                                isEven ? "bg-blue-600" : "bg-blue-500"
+                              }`}
+                            />
+                            <span className="leading-relaxed text-left sm:text-justify flex-1 w-full">
+                              {item}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* DESCRIPTION / EXTRA NOTE IF AVAILABLE */}
+                  {card.desc && (
+                    <div className="mt-4 p-4 rounded-xl border border-blue-200/60 bg-blue-50/50 text-xs text-slate-700 leading-relaxed text-left sm:text-justify">
+                      {card.desc}
+                    </div>
                   )}
                 </motion.div>
-              ))}
-            </div>
-
-            {/* ========================================================= */}
-            {/* 2. CARDS 10 TO 18 (Custom Grid Layout with Row Span)      */}
-            {/* ========================================================= */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-              {/* CARD 10 */}
-              {policyCards[9] && renderSpecialCard(policyCards[9])}
-
-              {/* CARD 11 */}
-              {policyCards[10] && renderSpecialCard(policyCards[10])}
-
-              {/* CARD 12 */}
-              {policyCards[11] && renderSpecialCard(policyCards[11])}
-
-              {/* CARD 13 */}
-              {policyCards[12] && renderSpecialCard(policyCards[12])}
-
-              {/* CARD 14 (Left Column) */}
-              {policyCards[13] && renderSpecialCard(policyCards[13])}
-
-              {/* CARD 15 (Right Column - SPANS 2 ROWS) */}
-              {policyCards[14] &&
-                renderSpecialCard(policyCards[14], "md:row-span-2")}
-
-              {/* CARD 16 (Left Column - Under Card 14) */}
-              {policyCards[15] && renderSpecialCard(policyCards[15])}
-
-              {/* CARD 17 (Left Bottom) */}
-              {policyCards[16] && renderSpecialCard(policyCards[16])}
-
-              {/* CARD 18 (Right Bottom) */}
-              {policyCards[17] && renderSpecialCard(policyCards[17])}
-            </div>
-          </div>
+              );
+            })}
+          </main>
         </div>
       </section>
 
-      {/* GRIEVANCE & CONTACT BANNER */}
-      <section className="py-14 bg-[#F8FAFC]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="relative overflow-hidden bg-[#040A26] rounded-[36px] p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-slate-800">
-            {/* Background Subtle Radial Glow */}
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* ================= 4. PRIVACY CONTACT & GRIEVANCE BANNER ================= */}
+      <section className="py-12 sm:py-16 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="bg-gradient-to-br from-slate-900 via-[#031154] to-slate-900 rounded-[28px] sm:rounded-[36px] p-6 sm:p-14 text-white shadow-2xl flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 lg:gap-10">
+            <div className="space-y-4 max-w-2xl">
+              <h3 className="text-2xl sm:text-4xl font-black leading-tight">
+                Privacy Contact & Grievance Redressal
+              </h3>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                For privacy questions, consent withdrawal, statutory rights
+                requests, or grievances, write directly to our official
+                Grievance Contact.
+              </p>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              {/* Left Info Area */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
-                  <ShieldCheck size={14} /> Clause 19 Governance
-                </div>
+              <div className="space-y-2 text-xs text-blue-200/80 border-l-2 border-blue-500/50 pl-4 pt-2">
+                <p>
+                  • Include <strong>&quot;Privacy Request&quot;</strong> in the
+                  email subject line.
+                </p>
+                <p>
+                  • Acknowledgement: <strong>Within 3 working days</strong>.
+                </p>
+                <p>
+                  • Resolution: <strong>Within 15 working days</strong>.
+                </p>
+              </div>
+            </div>
 
-                <h3 className="text-3xl sm:text-4xl font-black text-white leading-tight tracking-tight">
-                  Privacy Contact & <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-sky-400">
-                    Grievance Redressal
+            <div className="flex flex-col gap-3.5 w-full lg:w-auto shrink-0">
+              <a
+                href={`mailto:${corporateDetails.email}?subject=Privacy%20Request`}
+                className="flex items-center justify-center lg:justify-start gap-4 bg-white text-slate-900 p-4 sm:p-5 rounded-2xl font-bold shadow-lg hover:bg-slate-100 transition-all"
+              >
+                <Mail className="text-blue-600" size={24} />
+                <div className="text-left">
+                  <span className="block text-[10px] uppercase text-slate-400 font-black tracking-wider">
+                    Direct Email
                   </span>
-                </h3>
-
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
-                  For privacy questions, consent withdrawal, rights requests or
-                  complaints, please contact:
-                </p>
-
-                {/* SLA Metric Boxes */}
-                {/* Privacy Contact Details */}
-                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 space-y-4 backdrop-blur-sm">
-                  <h4 className="text-lg font-bold text-white">
-                    Privacy & Grievance Contact
-                  </h4>
-
-                  <div className="space-y-2 text-sm text-slate-300 leading-relaxed">
-                    <p className="font-semibold text-white">
-                      Vestigo Insurance Brokers Pvt. Ltd.
-                    </p>
-
-                    <p>
-                      SF 201, Status Complex, Opp. Amrapali Complex, Pani Tanki
-                      Road, Karelibaug,
-                      <br />
-                      Vadodara - 390018, Gujarat, India
-                    </p>
-                  </div>
+                  <span className="text-sm sm:text-base text-[#031154]">
+                    {corporateDetails.email}
+                  </span>
                 </div>
-              </div>
+              </a>
 
-              {/* Right Action Area */}
-              <div className="lg:col-span-5 flex flex-col gap-4 bg-white/5 border border-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-md">
-                <p className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                  Direct Redressal Line
-                </p>
-
-                <a
-                  href={`mailto:${corporateDetails.email}`}
-                  className="flex items-center gap-4 bg-white text-slate-900 p-4 sm:p-5 rounded-2xl font-bold hover:bg-blue-50 transition-colors shadow-md group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <Mail size={22} />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="block text-[10px] uppercase text-slate-400 font-black tracking-wider">
-                      Send Privacy Email
-                    </span>
-                    <span className="text-sm sm:text-md text-[#031154] font-bold break-all block">
-                      {corporateDetails.email}
-                    </span>
-                  </div>
-                </a>
-
-                <Link href="/contact" className="w-full">
-                  <button className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white py-4 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition-all">
-                    Connect with Compliance <ArrowRight size={18} />
-                  </button>
-                </Link>
-              </div>
-            </div>
-            {/* Bottom Privacy Note */}
-            <div className="relative z-10 mt-10">
-              <div className="max-w-5xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-sm">
-                <p className="text-center text-sm sm:text-base text-slate-300 leading-8">
-                  Please state{" "}
-                  <strong className="text-white">
-                    &quot;Privacy Request&quot;
-                  </strong>{" "}
-                  in the subject line and provide sufficient details to identify
-                  the relevant interaction or policy. We may request reasonable
-                  proof of identity or authority before acting on a request.
-                  Nothing in this Privacy Policy limits any right to approach a
-                  competent regulator, authority, ombudsman, court, or tribunal
-                  under applicable law.
-                </p>
-              </div>
+              <Link href="/contact" className="w-full">
+                <button className="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
+                  Contact Compliance Team <ArrowRight size={16} />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* STATUTORY FOOTER */}
-      <footer className="py-10 bg-slate-100 text-center border-t border-slate-200 px-6">
-        <p className="text-slate-500 text-xs font-bold uppercase tracking-widest max-w-4xl mx-auto leading-relaxed">
+      {/* ================= 5. STATUTORY FOOTER ================= */}
+      <footer className="py-6 sm:py-8 bg-slate-100 text-center border-t border-slate-200 px-4 sm:px-6">
+        <p className="text-slate-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest max-w-4xl mx-auto leading-relaxed">
           Insurance is a subject matter of solicitation |{" "}
           {corporateDetails.companyName} | IRDAI Regn. No:{" "}
-          {corporateDetails.irdaiRegNo} ({corporateDetails.category})
+          {corporateDetails.irdaiRegNo} ({corporateDetails.category}) | CIN:{" "}
+          {corporateDetails.cin}
         </p>
       </footer>
     </div>

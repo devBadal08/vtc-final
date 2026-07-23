@@ -363,24 +363,6 @@ const PharmaChemicalSuite = () => {
         </div>
       </section>
 
-      {/* 5. PHARMA FOOTER CTA */}
-      <section className="py-24 px-6 bg-slate-950 text-white text-center border-t border-blue-600/30">
-        <h2 className="text-5xl font-black mb-6 italic tracking-tighter uppercase">
-          Secure Your Digital Molecule
-        </h2>
-        <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-          Comprehensive protection including Product Liability, Business
-          Interruption, Professional Indemnity, and Regulatory Defense coverage.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            href="/contact"
-            className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-blue-600/20"
-          >
-            Talk to a Consultant <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
       {/* 5. CTA - DARK PREMIUM FINISH */}
       <section className="py-14 px-6">
         <motion.div

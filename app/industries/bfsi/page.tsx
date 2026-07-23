@@ -209,23 +209,6 @@ const BfsisSuite = () => {
         </div>
       </section>
 
-      {/* 5. BFSI FOOTER CTA */}
-      <section className="py-20 px-6 bg-slate-950 text-white text-center border-t border-blue-600/30">
-        <h2 className="text-3xl md:text-5xl font-black mb-6 italic tracking-tighter uppercase leading-tight">
-          Secure Your Digital Evolution
-        </h2>
-        <p className="text-slate-400 mb-10 max-w-xl mx-auto text-sm md:text-lg leading-relaxed">
-          Transform your financial institution with industry-leading technology
-          and military-grade security protocols.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 md:px-12 py-4 md:py-5 rounded-2xl font-bold transition-all uppercase tracking-widest text-xs md:text-sm shadow-lg hover:scale-105 active:scale-95"
-        >
-          Request Consultation
-          <ArrowRight size={20} />
-        </Link>
-      </section>
       {/* 5. CTA - DARK PREMIUM FINISH */}
       <section className="py-14 px-6">
         <motion.div

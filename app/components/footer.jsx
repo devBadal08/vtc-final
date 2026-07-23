@@ -358,17 +358,31 @@ export default function Footer() {
                 </Link>
                 <span className="text-white/10 hidden md:block">|</span>
                 <Link
-                  href="/privacy-policy/other-policies"
+                  href="/privacy-policy/cookie-policy"
                   className="text-blue-400 transition-colors"
                 >
-                  Other Policies
+                  Cookie Policy
+                </Link>
+                <span className="text-white/10 hidden md:block">|</span>
+                <Link
+                  href="/privacy-policy/grievance-redressal-policy"
+                  className="text-blue-400 transition-colors"
+                >
+                  Grievance Redressal Policy
+                </Link>
+                <span className="text-white/10 hidden md:block">|</span>
+                <Link
+                  href="/privacy-policy/code-of-ethics-and-speakup-policy"
+                  className="text-blue-400 transition-colors"
+                >
+                  Code of Ethics and Speak Up Policy
                 </Link>
               </div>
             </div>
           </div>
 
           {/* --- BOTTOM BAR --- */}
-          <div className="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-widest">
+          <div className="mt-6 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-around items-center gap-6 text-[10px] uppercase tracking-widest">
             <p className="text-slate-400 text-center md:text-left text-[9px] leading-relaxed">
               © 2026 Vestigo Insurance Brokers Pvt Ltd | <br /> IRDAI Regn. No:
               1131 Direct Broker (General & Life)

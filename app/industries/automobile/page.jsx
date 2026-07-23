@@ -18,8 +18,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-
-
 const AutomobileInsurancePage = () => {
   // Animation Variants
   const containerVariants = {
@@ -79,27 +77,27 @@ const AutomobileInsurancePage = () => {
     {
       title: "Property & Business Interruption",
       icon: <ShieldCheck size={28} />,
-      image: "/auto/auto1.jpg",
+      image: "/auto/auto11.png",
     },
     {
       title: "Product Liability & Recall",
       icon: <Car size={28} />,
-      image: "/auto/a1.jpeg",
+      image: "/auto/auto22.png",
     },
     {
       title: "Professional Indemnity",
       icon: <UserCheck size={28} />,
-      image: "/auto/a2.jpeg",
+      image: "/auto/auto33.png",
     },
     {
       title: "Cyber Insurance",
       icon: <Lock size={28} />,
-      image: "/auto/auto4.png",
+      image: "/auto/auto44.png",
     },
     {
       title: "Marine & Transit",
       icon: <Anchor size={28} />,
-      image: "/auto/a3.jpeg",
+      image: "/auto/auto55.png",
     },
   ];
 
@@ -236,7 +234,6 @@ const AutomobileInsurancePage = () => {
                 Comprehensive Protection
               </h3>
             </div>
-          
           </div>
 
           <motion.div
@@ -285,15 +282,11 @@ const AutomobileInsurancePage = () => {
               Secure Your <br /> Industrial Future
             </h2>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              
               <button className="bg-blue-600/50 hover:bg-white/20 text-white border border-white/30 px-12 py-5 rounded-2xl font-bold text-xl transition-all backdrop-blur-md">
-                <Link
-                  href="/contact"
-                  className="flex items-center gap-2"
-                >
-                Talk to Experts
-                <ArrowRight size={20} />
-              </Link>
+                <Link href="/contact" className="flex items-center gap-2">
+                  Talk to Experts
+                  <ArrowRight size={20} />
+                </Link>
               </button>
             </div>
           </div>

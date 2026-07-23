@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "admin.vestigoinsurance.com",
+        hostname: "https://admin.vestigoinsurance.com",
         pathname: "/storage/**",
       },
     ],

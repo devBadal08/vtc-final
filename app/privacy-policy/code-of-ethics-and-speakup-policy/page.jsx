@@ -4,38 +4,39 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ShieldCheck,
-  Lock,
-  Globe,
-  FileCheck,
-  Users,
-  Database,
-  Key,
-  Cpu,
-  Terminal,
-  Activity,
-  Server,
-  Building2,
-  UserCheck,
-  ShieldAlert,
-  Clock,
   Scale,
-  Mail,
-  RefreshCw,
+  ShieldCheck,
+  Award,
+  Users,
+  FileCheck,
+  Building2,
   MapPin,
-  ArrowRight,
-  Sparkles,
+  Mail,
   ChevronRight,
-  CheckCircle2,
-  AlertTriangle,
-  FileText,
+  Sparkles,
   Copy,
   Check,
+  ArrowRight,
+  Lock,
+  Eye,
+  Gavel,
+  ShieldAlert,
+  AlertTriangle,
+  UserCheck,
+  RefreshCw,
+  FileText,
+  MessageSquare,
+  Gift,
+  HeartHandshake,
+  CheckCircle2,
+  Ban,
+  Clock,
+  ExternalLink,
 } from "lucide-react";
 import Image from "next/image";
 
 // ==========================================
-// CORPORATE DETAILS & 18 ISMS POLICY CLAUSES
+// CORPORATE DETAILS & 14 ETHICS CLAUSES
 // ==========================================
 
 const corporateDetails = {
@@ -51,200 +52,142 @@ const corporateDetails = {
   effectiveDate: "20 July 2026",
 };
 
-const ismsClauses = [
+const ethicsClauses = [
   {
     id: "purpose",
     num: "01",
-    title: "Purpose",
-    icon: <ShieldCheck size={22} className="text-blue-500" />,
+    title: "Purpose and Commitment",
+    icon: <Award size={20} />,
     summary:
-      "Information is central to insurance advisory, policy placement, servicing and claims. Vestigo is committed to protecting the confidentiality, integrity, availability and lawful use of information entrusted to it. This Information Security Management System (ISMS) Policy establishes the principles by which Vestigo manages information-security and cyber risks across people, processes, premises, technology and third parties.",
+      "Insurance is built on trust, utmost good faith and responsible advice. Vestigo is committed to conducting business ethically, professionally and in the best interests of clients, while respecting insurers, regulators, employees, partners and the wider community. This Policy states the standards expected of Vestigo’s directors, employees, trainees, consultants, authorised representatives and business partners.",
   },
   {
-    id: "scope",
+    id: "core-principles",
     num: "02",
-    title: "Scope",
-    icon: <Globe size={22} className="text-white" />,
-    summary:
-      "This Policy applies to information in any form, including electronic records, emails, communications, documents, paper files, images, audio, credentials, system logs and backups. It applies to directors, employees, trainees, consultants, business partners, vendors and other persons who access Vestigo information or systems, to the extent relevant to their role or contract.",
-  },
-  {
-    id: "policy objectives",
-    num: "03",
-    title: "Policy Objectives",
-    icon: <FileCheck size={22} className="text-blue-500" />,
-    summary: "Vestigo's information-security objectives are to:",
-    points: [
-      "Protect client, insurer, employee and regulatory information.",
-      "Maintain resilient systems.",
-      "Manage cyber and technology risk.",
-      "Meet IRDAI and legal requirements.",
-      "Respond to security incidents.",
-      "Ensure third parties maintain safeguards.",
-      "Promote a culture of information security.",
-    ],
-  },
-  {
-    id: "governance",
-    num: "04",
-    title: "Governance & Accountability",
-    icon: <Users size={22} className="text-white" />,
-    summary: (
-      <>
-        Management is responsible for establishing oversight, assigning security
-        responsibilities, providing reasonable resources, approving policies and
-        monitoring material information-security risks. Business and technology
-        owners are accountable for risks within their functions. Every
-        authorised user is responsible for complying with security requirements,
-        protecting credentials and promptly reporting suspected incidents.
-        <br />
-        <br />
-        Security policies, risk assessments and material controls will be
-        reviewed periodically and following significant legal, regulatory,
-        technological, operational or threat changes. Independent review,
-        internal audit or external assessment may be undertaken where
-        appropriate.
-      </>
-    ),
-  },
-  {
-    id: "core security",
-    num: "05",
-    title: "Core Security Principles",
-    icon: <Lock size={22} className="text-blue-500" />,
+    title: "Core Ethical Principles",
+    icon: <Scale size={20} />,
     summary: "",
     points: [
-      "Confidentiality: information is accessible only to authorised persons for approved purposes.",
-      "Integrity: information is protected against unauthorised or accidental alteration and remains accurate and traceable.",
-      "Availability: systems and information required for critical operations are reasonably available and recoverable.",
-      "Privacy by design: personal data considerations are integrated into new processes, technology and vendor arrangements.",
-      "Least privilege and need-to-know: access is limited to what a user reasonably requires for authorised duties",
-      "Defence in depth: multiple preventive, detective, responsive and recovery measures are used rather than reliance on a single control",
-      "Continuous improvement: controls are reviewed and improved based on risk, incidents, testing, audit and evolving threats.",
+      "Client interest and fair treatment: understand the client’s needs, communicate fairly and avoid conduct that places commission, personal benefit or convenience ahead of lawful client interests.",
+      "Integrity and utmost good faith: be honest, truthful and complete in dealings and do not conceal, falsify, manipulate or knowingly misrepresent material information.",
+      "Competence, care and diligence: perform duties with appropriate knowledge, preparation, skill, documentation and attention; seek specialist support where required.",
+      "Clarity and transparency: explain material assumptions, limitations, terms, exclusions, deductibles, warranties, duties and conflicts in a manner appropriate to the engagement.",
+      "Accountability and ownership: take responsibility for advice, commitments, records, errors and corrective action.",
+      "Confidentiality and privacy: protect client, insurer, employee and business information and use it only for authorised purposes.",
+      "Regulatory respect: comply with applicable law, IRDAI requirements, the broker code of conduct and lawful directions of competent authorities.",
+      "Respectful conduct: maintain dignity, fairness, inclusion and professionalism and do not tolerate harassment, intimidation, retaliation or discrimination.",
     ],
   },
   {
-    id: "information classification",
+    id: "responsible-advice",
+    num: "03",
+    title: "Responsible Insurance Advice and Distribution",
+    icon: <HeartHandshake size={20} />,
+    summary:
+      "Vestigo prohibits mis-selling and misleading conduct. No person acting for Vestigo may:",
+    points: [
+      "Make false, exaggerated, unsubstantiated or guaranteed claims about coverage, claim payment, insurer performance, premium savings or returns.",
+      "Suppress material facts, exclusions, deductibles, warranties, waiting periods, co-payments, limits or conditions that should reasonably be brought to the client’s attention.",
+      "Fabricate quotations, comparisons, declarations, inspections, claims, KYC information or supporting documents.",
+      "Recommend a product solely because it produces a higher remuneration or personal benefit.",
+      "Sign, alter or submit a client document without authority.",
+      "Collect premium or client money into a personal, employee or unauthorised account.",
+      "Offer an unlawful rebate, inducement, kickback or benefit.",
+      "Interfere improperly with an insurer, surveyor, third-party administrator, hospital, repairer, regulator or claim investigation.",
+    ],
+    desc: "Where information is uncertain or incomplete, the limitation must be disclosed and reasonable steps taken to verify it. Policy documents issued by the insurer govern the contract of insurance.",
+  },
+  {
+    id: "conflicts-of-interest",
+    num: "04",
+    title: "Conflicts of Interest",
+    icon: <Eye size={20} />,
+    summary:
+      "Actual, potential or perceived conflicts must be disclosed promptly and managed fairly. Personnel must not use a Vestigo opportunity, client relationship, insurer relationship, confidential information or position for undisclosed personal benefit. Outside employment, financial interests, family relationships, referral arrangements and gifts that could influence or appear to influence judgment must be declared through the applicable internal process.",
+  },
+  {
+    id: "anti-bribery",
+    num: "05",
+    title: "Gifts, Hospitality, Bribery & Improper Advantages",
+    icon: <Gift size={20} />,
+    summary:
+      "Vestigo has zero tolerance for bribery, facilitation payments, kickbacks, secret commissions and improper advantages. Cash and cash-equivalent gifts must not be offered or accepted. Modest and lawful hospitality or customary gifts may be accepted only where they are reasonable, infrequent, transparent, do not influence a decision and comply with internal approval requirements. Any demand or suspicion of bribery must be reported immediately.",
+  },
+  {
+    id: "data-security",
     num: "06",
-    title: "Information Classification and Handling",
-    icon: <Database size={22} className="text-white" />,
+    title: "Confidentiality, Data and Information Security",
+    icon: <Lock size={20} />,
     summary:
-      "Vestigo classifies and handles information according to its sensitivity, business value and legal or contractual requirements. Confidential, personal, medical, financial, claims, KYC, credential and regulatory information is subject to enhanced access, transfer, storage, retention and disposal controls. Information must not be copied, transmitted, downloaded, printed or disclosed except for an authorised business purpose and through approved means.",
+      "Confidential information may be accessed and used only for authorised duties. It must not be disclosed to family, friends, competitors, unauthorised colleagues or external persons. Personal email, unapproved messaging, personal cloud storage, removable media or unauthorised software must not be used for confidential information where prohibited. Suspected loss, leakage, phishing, credential compromise or unauthorised access must be reported immediately.",
   },
   {
-    id: "access control",
+    id: "accurate-records",
     num: "07",
-    title: "Access Control & Identity Security",
-    icon: <Key size={22} className="text-blue-500" />,
+    title: "Accurate Records & Regulatory Cooperation",
+    icon: <FileCheck size={20} />,
     summary:
-      "Access to systems and information is authorised according to role, approved business need and the principle of least privilege. Vestigo may use unique user identities, strong passwords, multi-factor authentication where appropriate, periodic access review, prompt removal or modification of access following role changes, and controls over privileged accounts. Users must not share passwords, authentication codes or credentials.",
+      "Business, financial, policy, claim, client, attendance, expense and compliance records must be accurate, complete, timely and capable of audit. No person may create a false record, backdate a document improperly, delete material evidence, conceal an error or obstruct an audit, inspection or investigation. Vestigo will cooperate lawfully and transparently with IRDAI, insurers, authorities, auditors and other competent bodies.",
   },
   {
-    id: "technology, network and endpoint security",
+    id: "fair-competition",
     num: "08",
-    title: "Technology, Network and Endpoint Security",
-    icon: <Cpu size={22} className="text-white" />,
+    title: "Fair Competition and External Communications",
+    icon: <Building2 size={20} />,
     summary:
-      "Vestigo applies risk-appropriate controls to networks, devices, applications and infrastructure. These may include secure configuration, anti-malware, firewalls, endpoint protection, patching, vulnerability management, email security, encryption, secure remote access, backup, monitoring and restrictions on removable media or unauthorised software. Technology changes and new information-processing facilities are subject to appropriate review and approval.",
+      "Vestigo competes on service, knowledge, innovation and trust. Personnel must not obtain competitor information unlawfully, make defamatory statements, misuse confidential market information or enter anti-competitive arrangements. Public statements, advertisements, website content, social-media posts and media interactions concerning Vestigo or client matters must be accurate, authorised and compliant with confidentiality and regulatory requirements.",
   },
   {
-    id: "secure development",
+    id: "respectful-workplace",
     num: "09",
-    title: "Secure Development and Change Management",
-    icon: <Terminal size={22} className="text-blue-500" />,
+    title: "Respectful Workplace and Professional Behaviour",
+    icon: <Users size={20} />,
     summary:
-      "Where Vestigo develops, configures or procures applications, websites, integrations or automation, security and privacy requirements are considered during design, testing, implementation and change. Material changes are authorised, tested and documented commensurate with risk. Production data should not be used in testing unless appropriately protected and authorised.",
+      "Vestigo expects a workplace free from harassment, bullying, threats, discrimination, retaliation, substance misuse and violence. Professional disagreements must be addressed respectfully. Managers have a heightened duty to prevent misuse of authority, protect persons who raise concerns in good faith and act consistently.",
   },
   {
-    id: "logging and monitoring",
+    id: "speak-up",
     num: "10",
-    title: "Logging, Monitoring and Threat Detection",
-    icon: <Activity size={22} className="text-white" />,
+    title: "Speak-Up and Reporting Concerns",
+    icon: <MessageSquare size={20} />,
     summary:
-      "Vestigo maintains logs and monitoring appropriate to its systems, risk profile and applicable legal requirements. Security events may be reviewed to detect unauthorised activity, malware, data leakage, account compromise, fraud or operational failure. Logs are protected against unauthorised alteration and retained for the period required by applicable law, regulatory direction, investigation or business need.",
+      "A person may report suspected fraud, bribery, regulatory breach, mis-selling, conflict, data misuse, harassment, financial irregularity, document falsification, retaliation or other unethical conduct to enquiry@vestigoinsurance.com with the subject “Confidential Ethics Concern”. Reports should provide facts, dates, persons involved and available supporting material. Anonymous reports may be considered where sufficient information is provided, although anonymity may limit investigation or feedback.",
   },
   {
-    id: "third-party",
+    id: "anti-retaliation",
     num: "11",
-    title: "Third-Party and Cloud Security",
-    icon: <Server size={22} className="text-blue-500" />,
+    title: "Confidentiality and Protection Against Retaliation",
+    icon: <ShieldCheck size={20} />,
     summary:
-      "Before allowing a vendor or service provider to process or access material information, Vestigo considers the nature of the service, data sensitivity, security capability, location, subcontracting, incident management, continuity, confidentiality, audit and exit requirements. Contracts will contain appropriate information-security, privacy, confidentiality and cooperation obligations. Vestigo remains accountable for its regulatory obligations and does not treat outsourcing as a transfer of responsibility.",
+      "Vestigo will handle a good-faith report as confidentially as reasonably possible, consistent with a fair investigation, legal obligations and the rights of persons involved. Retaliation against a person who raises a genuine concern, seeks guidance, preserves evidence or assists an investigation is prohibited. A deliberately false or malicious allegation, evidence fabrication or obstruction may itself result in action.",
   },
   {
-    id: "physical and paper security",
+    id: "investigation",
     num: "12",
-    title: "Physical and Paper Security",
-    icon: <Building2 size={22} className="text-white" />,
+    title: "Investigation and Consequences",
+    icon: <Gavel size={20} />,
     summary:
-      "Vestigo applies reasonable physical safeguards to premises, work areas, records, equipment and visitor access. Confidential papers and media must be stored securely and disposed of through approved destruction methods. Unattended screens, portable devices and documents must be protected against unauthorised viewing, theft or loss.",
+      "Concerns will be assessed objectively and may be investigated internally or with professional advisers. Persons involved are expected to cooperate and preserve relevant evidence. Findings may lead to corrective action, training, control improvement, disciplinary action, termination of employment or contract, recovery of loss, insurer or regulatory notification, or referral to law-enforcement. Action will be proportionate to the evidence and applicable law.",
   },
   {
-    id: "personnel security",
+    id: "guidance-external",
     num: "13",
-    title: "Personnel Security, Awareness and Confidentiality",
-    icon: <UserCheck size={22} className="text-blue-500" />,
+    title: "Guidance and External Rights",
+    icon: <ExternalLink size={20} />,
     summary:
-      "Personnel and relevant third parties are subject to role-appropriate screening, confidentiality obligations, acceptable-use requirements and security awareness. Training may cover phishing, social engineering, credential protection, safe handling of personal and claims information, remote working, incident reporting, fraud and regulatory responsibilities. Breach of security obligations may result in access restriction, disciplinary action, contractual remedies or reporting to authorities, as applicable.",
+      "A person who is uncertain about an ethical issue should seek guidance before acting. This Policy does not prevent any person from approaching IRDAI, a lawful authority, ombudsman, court, tribunal or law-enforcement agency or from exercising a protected legal right. It does not create a contractual guarantee of any particular outcome or override applicable law or employment terms.",
   },
   {
-    id: "incident management",
+    id: "policy-review",
     num: "14",
-    title: "Incident Management and Regulatory Reporting",
-    icon: <ShieldAlert size={22} className="text-white" />,
-    summary: (
-      <>
-        All suspected cyber incidents, data breaches, malware, phishing, lost
-        devices, unauthorised disclosure, credential compromise, fraud or
-        security weaknesses must be reported immediately through approved
-        channels. Vestigo will triage, contain, preserve evidence, investigate,
-        remediate and document incidents and will cooperate with insurers,
-        clients, service providers, law-enforcement and regulators as required.
-        <br />
-        <br />
-        Where applicable, Vestigo will make notifications or reports to CERT-In,
-        IRDAI, the Data Protection Board of India, affected clients or
-        individuals, and other competent authorities within legally prescribed
-        timeframes. No employee or third party may conceal an incident, make an
-        unauthorised public statement, or destroy relevant evidence.
-      </>
-    ),
-  },
-  {
-    id: "business continuity",
-    num: "15",
-    title: "Business Continuity, Backup and Recovery",
-    icon: <Clock size={22} className="text-blue-500" />,
+    title: "Policy Review",
+    icon: <RefreshCw size={20} />,
     summary:
-      "Vestigo maintains risk-appropriate business-continuity, backup and recovery arrangements for critical operations. Backups are protected and tested at reasonable intervals. Continuity and recovery plans may be exercised, reviewed and improved based on testing, incidents, technology changes and business dependency.",
-  },
-  {
-    id: "compliance, review and enforcement",
-    num: "16",
-    title: "Compliance, Review and Enforcement",
-    icon: <Scale size={22} className="text-white" />,
-    summary:
-      "Compliance with this Policy may be monitored through reviews, audits, testing, vulnerability assessment, incident analysis and management reporting. Exceptions must be documented, risk-assessed, time-bound and authorised. Violations may result in disciplinary, contractual, civil, regulatory or criminal consequences, depending on the circumstances.",
-  },
-  {
-    id: "public security",
-    num: "17",
-    title: "Public Security Contact",
-    icon: <Mail size={22} className="text-blue-500" />,
-    summary:
-      "A person who believes that Vestigo’s website, systems or information may be affected by a security weakness or incident should report it responsibly to enquiry@vestigoinsurance.com with the subject “Confidential Security Report”. The report should contain sufficient factual detail to permit investigation and should not involve unlawful access, disruption, exploitation, data extraction or public disclosure.",
-  },
-  {
-    id: "policy status",
-    num: "18",
-    title: "Policy Status and Updates",
-    icon: <RefreshCw size={22} className="text-white" />,
-    summary:
-      "This is a public statement of Vestigo’s information-security commitments. Detailed control configurations, network architecture and internal procedures are confidential and are not disclosed through this website. Publication of this Policy does not represent that Vestigo holds any particular external certification unless expressly stated elsewhere with current evidence. This Policy may be updated to reflect changes in risk, law, regulation, technology or business operations.",
+      "Vestigo may revise this Policy to reflect legal, regulatory, governance or operational changes. The current website version will state its effective or last-updated date.",
   },
 ];
 
-export default function ISMSPolicyPage() {
+export default function CodeOfEthicsPage() {
   const [activeTab, setActiveTab] = useState("purpose");
   const [copied, setCopied] = useState(false);
   const indexContainerRef = useRef(null);
@@ -255,42 +198,30 @@ export default function ISMSPolicyPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // ==========================================
-  // SCROLL SPY INTERSECTION OBSERVER
-  // ==========================================
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -55% 0px",
-      threshold: 0,
-    };
-
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
-        }
-      });
-    };
-
     const observer = new IntersectionObserver(
-      handleIntersection,
-      observerOptions,
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveTab(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      },
     );
 
-    ismsClauses.forEach((clause) => {
+    ethicsClauses.forEach((clause) => {
       const element = document.getElementById(clause.id);
       if (element) observer.observe(element);
     });
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
-  // ==========================================
-  // FIXED: Smooth scroll active index item into sidebar view
-  // ==========================================
   useEffect(() => {
     const activeLink = document.getElementById(`nav-${activeTab}`);
     const container = indexContainerRef.current;
@@ -306,28 +237,28 @@ export default function ISMSPolicyPage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-900 selection:bg-blue-500 selection:text-white">
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative bg-[#070E27] text-white pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
-        {/* Animated Cyber Grid Background */}
+      {/* ================= 1. HERO SECTION ================= */}
+      <section className="relative bg-[#020617] text-white pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+        {/* Subtle grid pattern background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
         {/* Glow Spheres */}
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* HERO VISUAL CARD */}
+            {/* Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
               className="lg:col-span-5"
             >
               <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl">
                 <Image
-                  src="/policy/p1-hero.jpeg"
-                  alt="Information Security Management"
+                  src="/policy/code-of-ethics.jpeg"
+                  alt="AML Policy"
                   width={700}
                   height={700}
                   priority
@@ -345,23 +276,22 @@ export default function ISMSPolicyPage() {
             >
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-6 backdrop-blur-md">
                 <Sparkles size={14} className="animate-pulse" />
-                ISMS Framework | Effective: {corporateDetails.effectiveDate}
+                Integrity & Client Care | Effective:{" "}
+                {corporateDetails.effectiveDate}
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
-                Information Security <br />
+                Code of Ethics & <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">
-                  Management System
+                  Speak-Up Policy
                 </span>
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal">
-                Official statement of governance commitments by{" "}
+                Standards of integrity, client care and responsible conduct for{" "}
                 <strong className="text-white font-semibold">
                   {corporateDetails.companyName}
-                </strong>{" "}
-                to protect the Confidentiality, Integrity, and Availability of
-                client and regulatory information assets.
+                </strong>
               </p>
 
               {/* STATS / LICENSE BADGES */}
@@ -400,7 +330,7 @@ export default function ISMSPolicyPage() {
         </div>
       </section>
 
-      {/* ================= CORPORATE BANNER ================= */}
+      {/* ================= 2. CORPORATE IDENTIFICATION BANNER ================= */}
       <section className="relative z-20 -mt-8 px-6 max-w-7xl mx-auto">
         <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/90 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <div className="flex items-center gap-4">
@@ -426,7 +356,7 @@ export default function ISMSPolicyPage() {
             </div>
             <div>
               <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                Corporate Office
+                Registered Office
               </p>
               <p className="text-xs font-semibold text-slate-700 mt-0.5 leading-snug">
                 {corporateDetails.address}
@@ -440,7 +370,7 @@ export default function ISMSPolicyPage() {
             </div>
             <div>
               <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                Security Desk
+                Ethics & Speak-Up Desk
               </p>
               <p className="text-sm font-bold text-blue-600 mt-0.5">
                 {corporateDetails.email}
@@ -453,25 +383,20 @@ export default function ISMSPolicyPage() {
         </div>
       </section>
 
-      {/* ================= MAIN CONTENT LAYOUT (STICKY NAV + CLAUSES) ================= */}
+      {/* ================= 3. MAIN CONTENT LAYOUT (STICKY NAV + CLAUSES) ================= */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* LEFT: STICKY NAVIGATION */}
+          {/* LEFT: STICKY NAVIGATION INDEX */}
           <aside className="hidden lg:block lg:col-span-4 sticky top-8 space-y-4">
             <div className="bg-white border border-slate-200/90 rounded-3xl p-5 shadow-sm">
               <div className="flex items-center gap-2 mb-4 px-2 text-slate-800 font-bold text-sm">
                 <FileText size={18} className="text-blue-600" />
-                ISMS Index (Clauses 01-18)
+                Ethics Index (Clauses 01–14)
               </div>
-              {/* અહીં "relative" ક્લાસ એડ કર્યો છે */}
-              <div
-                ref={indexContainerRef}
-                className="relative space-y-1 max-h-[70vh] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200"
-              >
-                {ismsClauses.map((clause) => (
+              <div className="space-y-1 max-h-[70vh] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200">
+                {ethicsClauses.map((clause) => (
                   <a
                     key={clause.id}
-                    id={`nav-${clause.id}`}
                     href={`#${clause.id}`}
                     onClick={() => setActiveTab(clause.id)}
                     className={`flex items-center justify-between text-xs font-medium px-3.5 py-2.5 rounded-xl transition-all ${
@@ -491,9 +416,9 @@ export default function ISMSPolicyPage() {
             </div>
           </aside>
 
-          {/* RIGHT: CLAUSES CONTAINER */}
+          {/* RIGHT: CLAUSES CONTENT CONTAINER */}
           <main className="lg:col-span-8 space-y-8">
-            {ismsClauses.map((clause, index) => {
+            {ethicsClauses.map((clause, index) => {
               const isEven = index % 2 === 1;
 
               return (
@@ -543,15 +468,15 @@ export default function ISMSPolicyPage() {
                   </h3>
 
                   {/* SUMMARY */}
-                  <div className="text-slate-600 text-sm leading-relaxed mb-4">
+                  <p className="text-slate-600 text-sm leading-relaxed mb-4 text-left sm:text-justify">
                     {clause.summary}
-                  </div>
+                  </p>
 
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
                       <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Controls & Specifications:
+                        Key Policy Pillars:
                       </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
@@ -571,6 +496,13 @@ export default function ISMSPolicyPage() {
                             <span className="leading-relaxed">{pt}</span>
                           </div>
                         ))}
+                        {clause.desc && (
+                          <div className="mt-5 rounded-xl border border-blue-200 bg-blue-50 p-4">
+                            <p className="text-sm text-slate-700 leading-relaxed text-justify">
+                              {clause.desc}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -581,43 +513,46 @@ export default function ISMSPolicyPage() {
         </div>
       </section>
 
-      {/* ================= CLAUSE 17 SECURITY REPORTING BANNER ================= */}
+      {/* ================= 4. CONFIDENTIAL SPEAK-UP BANNER ================= */}
       <section className="py-16 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="bg-gradient-to-br from-slate-900 via-[#031154] to-slate-900 rounded-[36px] p-8 md:p-14 text-white shadow-2xl flex flex-col lg:flex-row justify-between items-center gap-10">
             <div className="space-y-4 max-w-2xl">
               <h3 className="text-2xl sm:text-4xl font-black leading-tight">
-                Responsible Security Reporting
+                Report an Ethical Concern
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                If you have identified a potential security weakness, bug, or
-                vulnerability within Vestigo’s infrastructure, please notify our
-                IT Security Desk responsibly.
+                If you observe mis-selling, bribery, document falsification,
+                conflict of interest, or unethical conduct, report it
+                confidentially to our designated ethics team.
               </p>
 
               <div className="space-y-2 text-xs text-blue-200/80 border-l-2 border-blue-500/50 pl-4 pt-2">
                 <p>
                   • Include{" "}
-                  <strong>&quot;Confidential Security Report&quot;</strong> in
-                  the subject line.
+                  <strong>&quot;Confidential Ethics Concern&quot;</strong> in
+                  the email subject line.
                 </p>
                 <p>
-                  • Detail steps to reproduce the issue without altering or
-                  accessing non-public data.
+                  • State facts, dates, individuals involved, and attach
+                  available documentation.
                 </p>
-                <p>• Our team acknowledges reports within 24–48 hours.</p>
+                <p>
+                  • Protected against retaliation under our zero-tolerance
+                  Speak-Up Policy.
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col gap-3.5 w-full sm:w-auto shrink-0">
               <a
-                href={`mailto:${corporateDetails.email}?subject=Confidential%20Security%20Report`}
+                href={`mailto:${corporateDetails.email}?subject=Confidential%20Ethics%20Concern`}
                 className="flex items-center gap-4 bg-white text-slate-900 p-4 sm:p-5 rounded-2xl font-bold shadow-lg hover:bg-slate-100 transition-all"
               >
                 <Mail className="text-blue-600" size={24} />
                 <div>
                   <span className="block text-[10px] uppercase text-slate-400 font-black tracking-wider">
-                    Incident Email
+                    Ethics Officer Email
                   </span>
                   <span className="text-sm sm:text-base text-[#031154]">
                     {corporateDetails.email}
@@ -627,7 +562,7 @@ export default function ISMSPolicyPage() {
 
               <Link href="/contact" className="w-full">
                 <button className="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 px-6 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors">
-                  Contact Information Security Team <ArrowRight size={16} />
+                  Contact Compliance Desk <ArrowRight size={16} />
                 </button>
               </Link>
             </div>
@@ -635,7 +570,7 @@ export default function ISMSPolicyPage() {
         </div>
       </section>
 
-      {/* ================= STATUTORY FOOTER ================= */}
+      {/* ================= 5. STATUTORY FOOTER ================= */}
       <footer className="py-8 bg-slate-100 text-center border-t border-slate-200 px-6">
         <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest max-w-4xl mx-auto leading-relaxed">
           Insurance is a subject matter of solicitation |{" "}

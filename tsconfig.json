@@ -37,7 +37,7 @@
     "app/privacy-policy/grievance-redressal-policy/page.jsx",
     "app/privacy-policy/aml-policy/page.jsx",
     "app/privacy-policy/whistleblower-ethics-policy/page.jsx",
-    "app/privacy-policy/other-policies/page.jsx"
+    "app/privacy-policy/code-of-ethics-and-speakup-policy/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

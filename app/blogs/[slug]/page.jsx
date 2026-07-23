@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Poppins } from "next/font/google";
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -136,6 +137,33 @@ export default async function BlogDetailPage({ params }) {
               }}
             />
           </div>
+          {post.gallery?.length > 0 && (
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold mb-6">Gallery</h2>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                {post.gallery.map((item, index) => (
+                  <div key={index} className="space-y-3">
+                    <div className="relative aspect-video rounded-xl overflow-hidden">
+                      <Image
+                        src={`https://admin.vestigoinsurance.com/storage/${item.url}`}
+                        alt={item.desc || `Gallery ${index + 1}`}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </div>
+
+                    {item.desc && (
+                      <p className="text-sm text-slate-400 text-center">
+                        {item.desc}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* FOOTER CTA */}
           <footer className="mt-10 p-10 md:p-16 rounded-[3rem] bg-slate-900 text-center text-white relative overflow-hidden">
