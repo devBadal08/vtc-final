@@ -56,13 +56,29 @@ const policyCards = [
     num: "01",
     title: "About this Policy",
     icon: <FileText className="text-blue-500" size={22} />,
-    content:
-      "Vestigo respects privacy and is committed to processing personal data lawfully, fairly, transparently, and securely.",
-    list: [
-      "This Privacy Policy explains how we handle personal data when an individual visits our website, makes an enquiry, seeks or receives insurance broking or advisory services, participates in a corporate or group insurance programme, communicates with us, submits information for a quotation, policy, endorsement, renewal or claim, or otherwise interacts with Vestigo.",
-      "This Policy is intended to operate in accordance with applicable Indian law, including the Information Technology Act, 2000 and the rules framed under it, applicable insurance laws and IRDAI requirements, and the Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025 as and when their respective provisions become applicable.",
-      "If a specific notice, consent form, proposal form, insurer document or contractual term provides additional information for a particular processing activity, that document will supplement this Policy.",
-    ],
+    content: (
+      <>
+        Vestigo respects privacy and is committed to processing personal data
+        lawfully, fairly, transparently, and securely.
+        <br />
+        This Privacy Policy explains how we handle personal data when an
+        individual visits our website, makes an enquiry, seeks or receives
+        insurance broking or advisory services, participates in a corporate or
+        group insurance programme, communicates with us, submits information for
+        a quotation, policy, endorsement, renewal or claim, or otherwise
+        interacts with Vestigo.
+        <br />
+        This Policy is intended to operate in accordance with applicable Indian
+        law, including the Information Technology Act, 2000 and the rules framed
+        under it, applicable insurance laws and IRDAI requirements, and the
+        Digital Personal Data Protection Act, 2023 and the Digital Personal Data
+        Protection Rules, 2025 as and when their respective provisions become
+        applicable. If a specific notice, consent form, proposal form, insurer
+        document or contractual term provides additional information for a
+        particular processing activity, that document will supplement this
+        Policy.
+      </>
+    ),
   },
   {
     id: "scope",
@@ -78,6 +94,7 @@ const policyCards = [
       "Persons who visit our premises, attend meetings or events, or communicate with us through email, telephone, messaging platforms, online forms or social media",
       "Any other individual whose personal data is lawfully provided to Vestigo for an insurance-related or legitimate business purpose.",
     ],
+    desc: "Employee and shareholder information may also be governed by separate internal policies and notices.",
   },
   {
     id: "data",
@@ -85,7 +102,7 @@ const policyCards = [
     title: "Personal Data We May Collect",
     icon: <Fingerprint className="text-blue-500" size={22} />,
     content:
-      "Depending on the service and context, Vestigo may collect the following categories of data. We seek to collect only data that is reasonably necessary for the relevant purpose. Health, financial and other sensitive information is handled with enhanced care and access restrictions.",
+      "Depending on the service and context, Vestigo may collect the following categories of data. ",
     list: [
       "Identity and contact data: name, age or date of birth, gender where relevant, photograph, signature, postal address, email address, telephone number and proof of identity or address.",
       "Business and professional data: designation, employer, organisation, ownership or beneficial ownership, authorised signatory status, business profile, industry, assets, operations, locations, contracts and risk information.",
@@ -97,6 +114,7 @@ const policyCards = [
       "Website and device data: IP address, browser and device information, operating system, access times, referring pages, website interactions, security logs and cookie or similar technology data.",
       "Premises and security data: visitor records and CCTV footage where security systems are lawfully deployed at our premises.",
     ],
+    desc: "We seek to collect only data that is reasonably necessary for the relevant purpose. Health, financial and other sensitive information is handled with enhanced care and access restrictions.",
   },
   {
     id: "collection",
@@ -139,25 +157,37 @@ const policyCards = [
     num: "06",
     title: "Consent and Other Permitted Processing",
     icon: <UserCheck className="text-white" size={22} />,
-    content:
-      "Where consent is the appropriate basis for processing, Vestigo will seek consent that is specific, informed and indicated through a clear affirmative action. Merely browsing a publicly accessible page will not, by itself, be treated as consent for unrelated processing or optional cookies.",
-    list: [
-      "An individual may withdraw consent by contacting us, subject to reasonable identity verification.",
-      "Withdrawal will apply prospectively and may affect our ability to continue a service that necessarily depends on the relevant data.",
-      "It will not require Vestigo to erase or stop using information that must be retained or processed to comply with law, regulation, a contract, a claim, a dispute, fraud prevention, or another legally permitted purpose.",
-      "Vestigo may also process data where permitted or required by applicable law, including for voluntarily provided data used for its stated purpose, contractual or pre-contractual activities, compliance with legal obligations, protection of rights, responding to emergencies, and other lawful uses.",
-    ],
+    content: (
+      <>
+        Where consent is the appropriate basis for processing, Vestigo will seek
+        consent that is specific, informed and indicated through a clear
+        affirmative action. Merely browsing a publicly accessible page will not,
+        by itself, be treated as consent for unrelated processing or optional
+        cookies.
+        <br />
+        An individual may withdraw consent by contacting us, subject to
+        reasonable identity verification. Withdrawal will apply prospectively
+        and may affect our ability to continue a service that necessarily
+        depends on the relevant data. It will not require Vestigo to erase or
+        stop using information that must be retained or processed to comply with
+        law, regulation, a contract, a claim, a dispute, fraud prevention, or
+        another legally permitted purpose.
+        <br />
+        Vestigo may also process data where permitted or required by applicable
+        law, including for voluntarily provided data used for its stated
+        purpose, contractual or pre-contractual activities, compliance with
+        legal obligations, protection of rights, responding to emergencies, and
+        other lawful uses.
+      </>
+    ),
   },
   {
     id: "thirdparty",
     num: "07",
     title: "Data About Other Persons",
     icon: <Users className="text-blue-500" size={22} />,
-    content: "Vestigo may seek evidence of authority where appropriate.",
-    list: [
-      "If you provide personal data about another person, you represent that you are authorised to do so and have provided any notice or obtained any consent required by law.",
-      "For corporate and group insurance, the employer, group policyholder or authorised administrator is responsible for lawfully collecting and sharing member and dependant data with Vestigo and the relevant insurer.",
-    ],
+    content:
+      "If you provide personal data about another person, you represent that you are authorised to do so and have provided any notice or obtained any consent required by law. For corporate and group insurance, the employer, group policyholder or authorised administrator is responsible for lawfully collecting and sharing member and dependant data with Vestigo and the relevant insurer. Vestigo may seek evidence of authority where appropriate.",
   },
   {
     id: "children",
@@ -165,11 +195,7 @@ const policyCards = [
     title: "Children and Persons Requiring Assistance",
     icon: <AlertCircle className="text-white" size={22} />,
     content:
-      "Our website and services are not directed at obtaining independent consent from children.",
-    list: [
-      "Data relating to a person below eighteen years of age, or a person who lawfully acts through a guardian, should be provided by or with the involvement of a parent, lawful guardian, employer, group policyholder or other authorised person, as applicable.",
-      "We process such data only for legitimate insurance, benefit, claim or legal purposes and with appropriate safeguards.",
-    ],
+      "Our website and services are not directed at obtaining independent consent from children. Data relating to a person below eighteen years of age, or a person who lawfully acts through a guardian, should be provided by or with the involvement of a parent, lawful guardian, employer, group policyholder or other authorised person, as applicable. We process such data only for legitimate insurance, benefit, claim or legal purposes and with appropriate safeguards.",
   },
   {
     id: "sharing",
@@ -186,8 +212,8 @@ const policyCards = [
       "IRDAI, CERT-In, the Data Protection Board of India when applicable, courts, tribunals, law-enforcement, tax and other governmental or regulatory authorities.",
       "A prospective or actual successor, investor, acquirer or restructuring participant, subject to confidentiality and applicable law.",
       "Any other person where the individual has authorised disclosure or disclosure is permitted or required by law.",
-      "Service providers are expected to use information only for authorised purposes and to maintain appropriate confidentiality and security. Vestigo does not sell personal data or trade it for unrelated commercial gain.",
     ],
+    desc: "Service providers are expected to use information only for authorised purposes and to maintain appropriate confidentiality and security. Vestigo does not sell personal data or trade it for unrelated commercial gain.",
   },
   {
     id: "transfers",
@@ -220,7 +246,6 @@ const policyCards = [
         protection, logging, backup, vendor controls, confidentiality
         obligations, training and incident-response procedures.
         <br />
-        <br />
         No system, transmission or storage method is completely secure. Vestigo
         therefore cannot guarantee absolute security, but will continue to
         assess risk and improve safeguards in line with applicable requirements
@@ -250,7 +275,6 @@ const policyCards = [
         claim or contractual obligation. Records relating to pending claims,
         disputes, proceedings or investigations may be retained until final
         disposal and completion of any required preservation period.
-        <br />
         <br />
         Other personal data is retained only for as long as reasonably necessary
         for the purpose for which it was collected and for legitimate legal,
@@ -604,14 +628,11 @@ export default function ComprehensivePolicy() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {card.list && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Policy Provisions:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {card.list.map((item, i) => (
                           <div
                             key={i}
-                            className={`flex items-start gap-3 p-3.5 rounded-xl text-xs sm:text-sm font-medium border ${
+                            className={`flex items-start gap-3 p-2 rounded-xl text-xs sm:text-sm font-medium border ${
                               isEven
                                 ? "bg-white/90 border-blue-100 text-slate-800"
                                 : "bg-slate-50 border-slate-100 text-slate-700"

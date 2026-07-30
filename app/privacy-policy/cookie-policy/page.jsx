@@ -69,8 +69,7 @@ const cookieClauses = [
     num: "03",
     title: "Types of Cookies We May Use",
     icon: <SlidersHorizontal size={20} />,
-    summary:
-      "Vestigo categorizes cookies into functional groups based on their purpose and legal consent requirements:",
+    summary: "",
     points: [
       "Strictly necessary cookies: required for website operation, security, network management, form submission, load balancing, fraud prevention or saving a visitor’s cookie choices. These cannot ordinarily be disabled through our preference tool because the website may not function correctly without them.",
       "Functional cookies: remember choices such as language, region, accessibility or other preferences. Where legally required, these are activated only after consent.",
@@ -107,7 +106,6 @@ const cookieClauses = [
         Rejecting optional cookies should be as accessible as accepting them. A
         visitor may change or withdraw a choice through the “Cookie Settings”
         link or preference mechanism made available on the website.
-        <br />
         <br />
         Consent choices may be recorded through a strictly necessary cookie or
         similar record so that the website can respect the visitor’s preference.
@@ -460,9 +458,6 @@ export default function CookiePolicyPage() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Category Breakdown:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
                           <div

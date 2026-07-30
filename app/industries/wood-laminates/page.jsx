@@ -129,65 +129,6 @@ export default function WoodLaminationPage() {
         </div>
       </section>
 
-      {/* 4. TECHNICAL ADHESION SECTION */}
-      <section className="py-10 bg-slate-50 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          <div className="order-2 lg:order-1 relative">
-            <div className="bg-slate-900 p-10 rounded-3xl shadow-2xl border border-slate-800">
-              <h4 className="text-blue-400 font-bold uppercase text-xs tracking-widest mb-8">
-                Bonding Analysis
-              </h4>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center text-white/50 text-md border-b border-white/5 pb-4">
-                  <span>Adhesive Viscosity</span>
-                  <span className="text-white uppercase">Optimal</span>
-                </div>
-                <div className="flex justify-between items-center text-white/50 text-md border-b border-white/5 pb-4">
-                  <span>Curing Temperature</span>
-                  <span className="text-white ">140°C</span>
-                </div>
-                <div className="flex justify-between items-center text-white/50 text-md">
-                  <span>Shear Strength</span>
-                  <span className="text-blue-400 font-bold tracking-widest">
-                    PASSED
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* Abstract Blue Glow */}
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-blue-500/10 rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="order-1 lg:order-2">
-            <h2 className="text-5xl font-black text-slate-900 mb-8 tracking-tighter italic uppercase">
-              Advanced <br />
-              <span className="text-blue-600 not-italic">Lamination.</span>
-            </h2>
-            <div className="space-y-6">
-              <div className="flex gap-4 p-6 bg-white rounded-2xl border border-slate-200 group hover:border-blue-400 transition-colors">
-                <ShieldCheck className="text-blue-600 shrink-0" size={32} />
-                <div>
-                  <h4 className="font-bold">Scratch & Wear Resistance</h4>
-                  <p className="text-md text-slate-500 mt-1">
-                    Diamond-infused top layers providing unparalleled protection
-                    against daily abrasions.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4 p-6 bg-white rounded-2xl border border-slate-200 group hover:border-blue-400 transition-colors">
-                <Zap className="text-blue-600 shrink-0" size={32} />
-                <div>
-                  <h4 className="font-bold">Precision Calibration</h4>
-                  <p className="text-md text-slate-500 mt-1">
-                    Laser-guided thickness control ensuring absolute uniformity
-                    across 10,000+ sheets.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* 5. CTA - DARK PREMIUM FINISH */}
       <section className="py-14 px-6">
         <motion.div

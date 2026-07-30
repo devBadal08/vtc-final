@@ -8,12 +8,12 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "Instagram",
-      icon: <Instagram size={18} />,
+      icon: <Instagram size={18} className="text-pink-700" />,
       href: "https://www.instagram.com/vestigoinsurance?igsh=dHFxYmFlN2RtbHVp",
     },
     {
       name: "LinkedIn",
-      icon: <Linkedin size={18} />,
+      icon: <Linkedin size={18} className="text-blue-600" />,
       href: "https://www.linkedin.com/company/vestigo-insurance-brokers-pvt-ltd/",
     },
   ];
@@ -349,13 +349,7 @@ export default function Footer() {
                 >
                   ISMS Policy
                 </Link>
-                <span className="text-white/10 hidden md:block">|</span>
-                <Link
-                  href="/privacy-policy/aml-policy"
-                  className="text-blue-400 transition-colors"
-                >
-                  AML Policy
-                </Link>
+
                 <span className="text-white/10 hidden md:block">|</span>
                 <Link
                   href="/privacy-policy/cookie-policy"
@@ -376,6 +370,13 @@ export default function Footer() {
                   className="text-blue-400 transition-colors"
                 >
                   Code of Ethics and Speak Up Policy
+                </Link>
+                <span className="text-white/10 hidden md:block">|</span>
+                <Link
+                  href="/privacy-policy/aml-policy"
+                  className="text-blue-400 transition-colors"
+                >
+                  AML Policy
                 </Link>
               </div>
             </div>

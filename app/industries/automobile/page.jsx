@@ -251,7 +251,7 @@ const AutomobileInsurancePage = () => {
               >
                 <img
                   src={item.image}
-                  className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                  className="absolute inset-0 w-full h-full object-cover object-top opacity-20 group-hover:opacity-40 transition-opacity duration-500"
                   alt={item.title}
                 />
                 <div className="relative z-10 p-8 h-full flex flex-col justify-between">

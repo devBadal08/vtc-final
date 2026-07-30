@@ -86,7 +86,6 @@ const amlClauses = [
         maintains required records; and complies with obligations that apply
         directly to Vestigo.
         <br />
-        <br />
         Vestigo’s controls do not replace an insurer’s underwriting, KYC,
         transaction-monitoring, suspicious-transaction reporting or
         claim-investigation responsibilities. Vestigo will cooperate with the
@@ -142,7 +141,6 @@ const amlClauses = [
         a director, employee, representative or third party unless the insurer
         has lawfully authorised the arrangement in writing and it is permitted
         by regulation.
-        <br />
         <br />
         Vestigo may seek clarification or documents concerning third-party
         payments, cash, multiple instruments, unusual refunds, changes in
@@ -563,9 +561,6 @@ export default function AMLPolicyPage() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Framework Provisions:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
                           <div

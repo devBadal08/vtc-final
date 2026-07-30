@@ -117,7 +117,6 @@ const grievanceClauses = [
         reference and reviewed by personnel who are reasonably independent of
         the subject matter where practicable.
         <br />
-        <br />
         Vestigo will endeavour to provide a reasoned final response and redress
         the grievance within fourteen calendar days of receipt, in accordance
         with the timeline applicable to insurance brokers. If information
@@ -492,9 +491,6 @@ export default function GrievancePolicyPage() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Framework Specifications:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
                           <div

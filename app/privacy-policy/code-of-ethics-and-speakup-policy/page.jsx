@@ -475,9 +475,6 @@ export default function CodeOfEthicsPage() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Policy Pillars:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
                           <div

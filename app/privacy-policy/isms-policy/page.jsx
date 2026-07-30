@@ -98,7 +98,6 @@ const ismsClauses = [
         authorised user is responsible for complying with security requirements,
         protecting credentials and promptly reporting suspected incidents.
         <br />
-        <br />
         Security policies, risk assessments and material controls will be
         reviewed periodically and following significant legal, regulatory,
         technological, operational or threat changes. Independent review,
@@ -200,7 +199,6 @@ const ismsClauses = [
         channels. Vestigo will triage, contain, preserve evidence, investigate,
         remediate and document incidents and will cooperate with insurers,
         clients, service providers, law-enforcement and regulators as required.
-        <br />
         <br />
         Where applicable, Vestigo will make notifications or reports to CERT-In,
         IRDAI, the Data Protection Board of India, affected clients or
@@ -550,9 +548,6 @@ export default function ISMSPolicyPage() {
                   {/* BULLET POINTS IF AVAILABLE */}
                   {clause.points && (
                     <div className="mt-5 pt-4 border-t border-slate-200/60">
-                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">
-                        Key Controls & Specifications:
-                      </p>
                       <div className="grid grid-cols-1 gap-2.5">
                         {clause.points.map((pt, i) => (
                           <div
